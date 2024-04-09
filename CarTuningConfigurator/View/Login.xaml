@@ -11,15 +11,16 @@
             <StackPanel x:Name="Header">
                 <Label x:Name="title" Content="Car Tunning Configuration" Height="68" FontSize="35" HorizontalAlignment="Center" FontWeight="Bold" VerticalContentAlignment="Bottom"/>
             </StackPanel>
-            <Button Content="Log in" HorizontalAlignment="Center" VerticalAlignment="Top" Height="71" Width="700" Background="#FF090656" Foreground="White" FontSize="20" Margin="0,363,0,0"/>
+            <Button Content="Log in" HorizontalAlignment="Center" VerticalAlignment="Top" Height="71" Width="700" Background="#FF090656" Foreground="White" FontSize="20" Margin="0,363,0,0" Click="Button_Click"/>
             <StackPanel x:Name="Main" Margin="0,73,0,76">
                 <Grid x:Name="Username" Height="285">
                     <Label x:Name="UsernameL" Content="Username" HorizontalAlignment="Left" Margin="44,57,0,0" VerticalAlignment="Top" FontSize="18"/>
                     <Label x:Name="PasswordL" Content="Password" HorizontalAlignment="Left" Margin="47,142,0,0" VerticalAlignment="Top" FontSize="18"/>
                     <TextBox x:Name="Username1" HorizontalAlignment="Left" Margin="230,59,0,0" TextWrapping="Wrap" Text="max.mustermann" VerticalAlignment="Top" Width="380" Height="30" FontSize="18"/>
                     <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="230,144,0,0" VerticalAlignment="Top" Width="380" Height="30" FontSize="18" Password="max123"/>
-                    <TextBlock x:Name="LinkToRegister" HorizontalAlignment="Left" Margin="325,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Text="don't have an account ">
-                    </TextBlock>
+                    <Label Content="Don't have an account? " Margin="250,219,0,0" VerticalAlignment="Top" FontSize="13" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+                    <Button Content="Sign in" HorizontalAlignment="Left" Margin="403,222,0,0" VerticalAlignment="Top" FontSize="13" Background="White" BorderBrush="White" IsCancel="True" Foreground="#FF5550FF" FontWeight="Bold" Click="Button_Click_1"/>
+
                 </Grid>
             </StackPanel>
         </Grid>
