@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Driver;
-using MongoDB.Bson;
+﻿using MongoDB.Driver;
+using System.Windows;
 
 namespace CarTuningConfigurator.DatabaseConnection
 {
     class DBConnect
     {
-        private void ConnectToDB() {
+        void ConnectToDb()
+        {
             const string ConnectionString = "mongodb://localhost:27017";
             var client = new MongoClient(ConnectionString);
 
-            
+            Console.WriteLine(client);
+            Console.WriteLine("Hallo Mensch");
+
         }
-    } 
+    }
+
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using CarTuningConfigurator.DatabaseConnection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,16 @@ namespace CarTuningConfigurator
     /// </summary>
     public partial class MainWindow : Window
     {
+        private String hallo = "hallo";
+        
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LabelTitle.Content = hallo;
         }
     }
 }
