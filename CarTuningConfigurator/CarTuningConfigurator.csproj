@@ -12,7 +12,6 @@
     <Folder Include="Contorller\" />
     <Folder Include="Model\" />
     <Folder Include="Repository\" />
-    <Folder Include="View\" />
   </ItemGroup>
 
   <ItemGroup>
