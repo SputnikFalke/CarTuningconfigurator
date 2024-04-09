@@ -23,5 +23,10 @@ namespace CarTuningConfigurator.View
         {
             InitializeComponent();
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+             
+        }
     }
 }
