@@ -10,6 +10,9 @@
 
   <ItemGroup>
     <Folder Include="Contorller\" />
+
+    <Folder Include="Model\" />
+
     <Folder Include="Repository\" />
   </ItemGroup>
 
