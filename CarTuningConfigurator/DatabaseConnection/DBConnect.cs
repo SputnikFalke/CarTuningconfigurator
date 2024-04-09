@@ -10,6 +10,11 @@ namespace CarTuningConfigurator.DatabaseConnection
 {
     class DBConnect
     {
-        const string DbConnectionString = "";
+        private void ConnectToDB() {
+            const string ConnectionString = "mongodb://localhost:27017";
+            var client = new MongoClient(ConnectionString);
+
+            
+        }
     } 
 }
