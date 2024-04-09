@@ -1,4 +1,5 @@
-﻿using CarTuningConfigurator.DatabaseConnection;
+﻿using CarTuningConfigurator.Contorller;
+using CarTuningConfigurator.DatabaseConnection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,7 @@ namespace CarTuningConfigurator
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
