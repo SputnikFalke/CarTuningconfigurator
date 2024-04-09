@@ -28,7 +28,7 @@ namespace CarTuningConfigurator
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LabelTitle.Content = hallo;
+            
         }
     }
 }
