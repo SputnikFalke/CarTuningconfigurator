@@ -18,11 +18,26 @@ namespace CarTuningConfigurator.View
     /// <summary>
     /// Interaction logic for Register.xaml
     /// </summary>
-    public partial class Register : Page
+    public partial class Register : Window
     {
         public Register()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            String username = Username1.Text;
+            if (username.Length >= 5) 
+            {
+                if (Password != null)
+                {
+                    if(Password == ConfirmPasswordT)
+                    {
+
+                    }
+                }
+            }
         }
     }
 }
