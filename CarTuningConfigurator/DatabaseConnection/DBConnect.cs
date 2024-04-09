@@ -21,11 +21,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             collection = database.GetCollection<BsonDocument>(collectioname);
             
         }
-
-        public void CreateCollection() 
-        {
-            database.CreateCollection("Cars");
-        }
     }
 
 }
