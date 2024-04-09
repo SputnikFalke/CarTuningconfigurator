@@ -1,18 +1,30 @@
 ﻿using MongoDB.Driver;
 using System.Windows;
+using System.Windows.Input;
+using MongoDB.Bson;
+using Amazon.Runtime.SharedInterfaces;
 
 namespace CarTuningConfigurator.DatabaseConnection
 {
     class DBConnect
     {
-        void ConnectToDb()
+        const string DatabaseName = "CarTuningConfigurator";
+        const string ConnectionString = "mongodb://localhost:27017";
+        string collectioname = "Cars";
+        IMongoCollection<BsonDocument> collection;
+        IMongoDatabase database;
+
+        public void ConnectToDb()
         {
-            const string ConnectionString = "mongodb://localhost:27017";
             var client = new MongoClient(ConnectionString);
+            database = client.GetDatabase(DatabaseName);
+            collection = database.GetCollection<BsonDocument>(collectioname);
+            
+        }
 
-            Console.WriteLine(client);
-            Console.WriteLine("Hallo Mensch");
-
+        public void CreateCollection() 
+        {
+            database.CreateCollection("Cars");
         }
     }
 
