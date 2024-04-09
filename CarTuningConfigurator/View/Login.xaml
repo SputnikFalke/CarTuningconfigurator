@@ -18,8 +18,6 @@
                     <Label x:Name="PasswordL" Content="Password" HorizontalAlignment="Left" Margin="47,142,0,0" VerticalAlignment="Top" FontSize="18"/>
                     <TextBox x:Name="Username1" HorizontalAlignment="Left" Margin="230,59,0,0" TextWrapping="Wrap" Text="max.mustermann" VerticalAlignment="Top" Width="380" Height="30" FontSize="18"/>
                     <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="230,144,0,0" VerticalAlignment="Top" Width="380" Height="30" FontSize="18" Password="max123"/>
-                    <TextBlock x:Name="LinkToRegister" HorizontalAlignment="Left" Margin="325,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Text="don't have an account ">
-                    </TextBlock>
                 </Grid>
             </StackPanel>
         </Grid>
