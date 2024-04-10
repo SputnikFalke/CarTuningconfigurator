@@ -27,7 +27,7 @@ namespace CarTuningConfigurator.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            String username = Username1.Text;
+            string username = Username1.Text;
             if (username.Length >= 5) 
             {
                 if (Password != null)
