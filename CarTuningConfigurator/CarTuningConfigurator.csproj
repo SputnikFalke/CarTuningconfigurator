@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+
     <None Remove="Pictures\FerrrariF40WhiteLibertyWalkWidebody.jpg" />
     <None Remove="Pictures\mazdaMiata1990.avif" />
     <None Remove="Pictures\mazdaRx7.jpg" />
@@ -17,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Contorller\" />
-
     <Folder Include="Repository\" />
   </ItemGroup>
 
