@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarTuningConfigurator.Contorller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace CarTuningConfigurator.View
     /// </summary>
     public partial class Register : Window
     {
+        LoginController loginController = new LoginController();
         public Register()
         {
             InitializeComponent();
@@ -27,17 +29,16 @@ namespace CarTuningConfigurator.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string username = Username1.Text;
-            if (username.Length >= 5) 
-            {
-                if (Password != null)
-                {
-                    if(Password == ConfirmPasswordT)
-                    {
+            string resultat = loginController.addUser(Username1.Text, Password.Password, ConfirmPasswordT.Password);
+            MessageBox.Show(resultat);
+            MessageBox.Show(Password.Password);
+        }
 
-                    }
-                }
-            }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            //Application.Current.Windows[0].Close();
         }
     }
 }

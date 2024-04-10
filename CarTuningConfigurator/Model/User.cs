@@ -6,19 +6,25 @@ using System.Threading.Tasks;
 
 namespace CarTuningConfigurator.Model
 {
-    internal class User
+    class User
     {
-        private string Name { get; set; }
-        private string Lastname { get; set; }
-        private List<Car> cars { get; set; } = new List<Car>();
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public List<Car> cars { get; set; } = new List<Car>();
 
         public User() {}
         
         public User(string name, string lastname, List<Car> cars)
         {
-            this.Name = name;
-            this.Lastname = lastname;
+            this.Username = name;
+            this.Password = lastname;
             this.cars = cars;
+        }
+
+        public User(string username, string password)
+        {
+            this.Username = username;
+            this.Password = password;
         }
     }
 }
