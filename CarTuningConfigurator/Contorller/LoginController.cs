@@ -10,10 +10,10 @@ namespace CarTuningConfigurator.Contorller
     internal class LoginController
     {
         UserModel userModel = new UserModel();
-        public String addUser(string username, string password, string confirmpassword)
+        public string addUser(string username, string password, string confirmpassword)
         {
             
-            String resultat;
+            string resultat;
             if(username.Count() >= 5) 
             {
                 if(password.Count() >= 5 && password == confirmpassword) 
@@ -41,6 +41,10 @@ namespace CarTuningConfigurator.Contorller
                 result = true;
             }
             return result;
+        }
+        public void updateCarsFromUser(string username, List<Car> myCars)
+        {
+            userModel.updateCarsFromUser(username, myCars);
         }
     }
 }

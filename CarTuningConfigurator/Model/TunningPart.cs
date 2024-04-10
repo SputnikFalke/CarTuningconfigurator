@@ -8,24 +8,24 @@ namespace CarTuningConfigurator.Model
 {
     internal class TunningPart
     {
-        private string Name {  get; set; }
-        private string Category { get; set; }
-        private int ChangeOfHorsePower { get; set; }
-        private double ChangeOfBrakeForce { get; set; }
-        private double ChangeOfPosture { get; set; }
-        private double ChangeOfWeight { get; set; }
-        private int ChangeOfHighspeed { get; set;}
-        private double ChangeOfAcceleration { get; set; }
-        private double ChangeOfPrice { get; set;}
+        public string Name {  get; set; }
+        public string Category { get; set; }
+        public int ChangeOfHorsePower { get; set; }
+        public double ChangeOfBrakeForce { get; set; }
+        public double ChangeOfTraction { get; set; }
+        public double ChangeOfWeight { get; set; }
+        public int ChangeOfHighspeed { get; set;}
+        public double ChangeOfAcceleration { get; set; }
+        public double ChangeOfPrice { get; set;}
 
         public TunningPart() { }
-        public TunningPart(string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfPosture, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice)
+        public TunningPart(string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice)
         {
             this.Name = name;
             this.Category = category;
             this.ChangeOfHorsePower = changeOfHorsePower;
             this.ChangeOfBrakeForce = changeOfBrakeForce;
-            this.ChangeOfPosture = changeOfPosture;
+            this.ChangeOfTraction = changeOfTraction;
             this.ChangeOfWeight = changeOfWeight;
             this.ChangeOfHighspeed = changeOfHighspeed;
             this.ChangeOfAcceleration = changeOfAcceleration;
