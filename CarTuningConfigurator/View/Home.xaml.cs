@@ -15,26 +15,19 @@ using System.Windows.Shapes;
 namespace CarTuningConfigurator.View
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Home : Window
     {
-        public Login()
+        public Home()
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+        public void addImage()
+        {
+            
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-             
-        }
     }
 }

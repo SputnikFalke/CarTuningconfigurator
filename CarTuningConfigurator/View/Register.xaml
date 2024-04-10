@@ -22,7 +22,7 @@
                 <Label x:Name="ConfirmPasswordL" Content="Confirm Password" HorizontalAlignment="Left" Margin="47,163,0,0" VerticalAlignment="Top" FontSize="18"/>
                 <PasswordBox x:Name="ConfirmPasswordT" HorizontalAlignment="Left" Margin="230,165,0,0" VerticalAlignment="Top" Width="380" Height="30" FontSize="18" Password="max123"/>
                 <Label Content="Already have an account? " Margin="250,219,0,0" VerticalAlignment="Top" FontSize="13" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
-                <Button Content="Log in" HorizontalAlignment="Left" Margin="403,222,0,0" VerticalAlignment="Top" FontSize="13" Background="White" BorderBrush="White" IsCancel="True" Foreground="#FF5550FF" FontWeight="Bold" Click="Button_Click_1"/>
+                <Button Content="Log in" HorizontalAlignment="Left" Margin="403,222,0,0" VerticalAlignment="Top" FontSize="13" Background="White" BorderBrush="White" IsCancel="True" Foreground="#FF5550FF" FontWeight="Bold" />
             </Grid>
         </StackPanel>
     </Grid>

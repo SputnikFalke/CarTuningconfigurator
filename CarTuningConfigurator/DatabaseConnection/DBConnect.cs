@@ -12,13 +12,13 @@ namespace CarTuningConfigurator.DatabaseConnection
         const string ConnectionString = "mongodb://localhost:27017";
         string collectioname = "Cars";
         IMongoCollection<BsonDocument> collection;
-        IMongoDatabase database;
+        IMongoDatabase db;
 
         public void ConnectToDb()
         {
             var client = new MongoClient(ConnectionString);
-            database = client.GetDatabase(DatabaseName);
-            collection = database.GetCollection<BsonDocument>(collectioname);
+            db = client.GetDatabase(DatabaseName);
+            collection = db.GetCollection<BsonDocument>(collectioname);
             
         }
     }
