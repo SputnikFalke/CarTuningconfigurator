@@ -1,4 +1,5 @@
 ﻿using CarTuningConfigurator.Contorller;
+using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,9 @@ namespace CarTuningConfigurator.View
 
         LoginController controller = new LoginController();
 
-        Home home = new Home();
-
         public Login()
         {
             InitializeComponent();
-            home.Show();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -63,6 +61,11 @@ namespace CarTuningConfigurator.View
         {
              
 
+        }
+
+        private void SaveData(object sender, RoutedEventArgs e)
+        { 
+            
         }
     }
 }
