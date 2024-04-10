@@ -19,12 +19,8 @@ namespace CarTuningConfigurator.Model
         }
         public void addUser(User user)
         {
-            //User du = new User("Fabio", "Dauru");
             users.Add(user);
         }
-            
-
-        public void deleteUser(User user) { users.Remove(user); }
 
         public User checkUser(string username, string password) 
         {

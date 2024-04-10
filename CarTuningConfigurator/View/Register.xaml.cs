@@ -21,11 +21,16 @@ namespace CarTuningConfigurator.View
     /// </summary>
     public partial class Register : Window
     {
+        Login login;
+
         LoginController loginController = new LoginController();
+
         public Register()
         {
             InitializeComponent();
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -36,9 +41,12 @@ namespace CarTuningConfigurator.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
+            if(login == null)
+            {
+                login = new Login();
+            }
             login.Show();
-            //Application.Current.Windows[0].Close();
+            Application.Current.Windows[0].Close();
         }
     }
 }
