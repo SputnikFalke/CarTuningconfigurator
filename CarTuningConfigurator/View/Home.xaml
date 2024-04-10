@@ -5,11 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarTuningConfigurator.View"
         mc:Ignorable="d"
-        Title="Home" Height="417" Width="770">
-    <Grid Margin="0,0,21,0">
-        <Image Source="\Pictures\FerrrariF40WhiteLibertyWalkWidebody.jpg" Name="CarPicture" Margin="0,0,-26,-6" Height="440" VerticalAlignment="Bottom" />
+        Height="396" Width="732">
 
-
-
-    </Grid>
+    <Border Background="#272537" ></Border>
+    
 </Window>

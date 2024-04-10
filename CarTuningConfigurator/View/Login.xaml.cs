@@ -19,18 +19,22 @@ namespace CarTuningConfigurator.View
     /// </summary>
     public partial class Login : Window
     {
+        Home home = new Home();
         public Login()
         {
             InitializeComponent();
+            home.Show();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            
         }
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
