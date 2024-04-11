@@ -1,4 +1,5 @@
 ﻿using CarTuningConfigurator.Contorller;
+using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
 using Microsoft.Win32;
 using System;
@@ -24,11 +25,8 @@ namespace CarTuningConfigurator.View
     {
 
         LoginController controller = new LoginController();
-
         Home home;
         Register register;
-
-
 
         public Login()
         {
@@ -72,6 +70,11 @@ namespace CarTuningConfigurator.View
             Application.Current.Windows[0].Close();
 
 
+        }
+
+        private void SaveData(object sender, RoutedEventArgs e)
+        { 
+            
         }
     }
 }
