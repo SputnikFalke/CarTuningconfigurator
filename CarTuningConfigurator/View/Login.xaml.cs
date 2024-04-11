@@ -1,6 +1,7 @@
 ﻿using CarTuningConfigurator.Contorller;
 using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace CarTuningConfigurator.View
     {
 
         LoginController controller = new LoginController();
+        Home home;
+        Register register;
 
         public Login()
         {
@@ -33,33 +36,39 @@ namespace CarTuningConfigurator.View
         {
 
             bool result = controller.checkUser(Username1.Text, Password.Password);
-            if(result == true)
+            int count = 0;
+
+            if (result == true)
             {
-                MessageBox.Show("hoi");
+                if (home == null)
+                {
+                    home = new Home();
+                }
+                home = new Home();
+                MessageBox.Show("Anmeldung erfolgreich");
+                home.Show();
             }
             else
             {
-                MessageBox.Show("ade");
+                MessageBox.Show("ups");
             }
-
-            
-            
-            
-
         }
+
+
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (register == null)
+            {
+                register = new Register();
+            }
 
-            Register register = new Register();
+
+
             register.Show();
-            //Application.Current.Windows[0].Close();            
+            Application.Current.Windows[0].Close();
 
-            
-        }
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-             
 
         }
 

@@ -8,29 +8,31 @@ namespace CarTuningConfigurator.Model
 {
     internal class Car
     {
-        private String Model {  get; set; }
-        private String Brand { get; set; }
-        private int Horsepower { get; set; }
-        private double Brakeforce { get; set; }
-        private double Traction {  get; set; }
-        private double Weight { get; set; }
-        private int Highspeed { get; set; }
-        private double Acceleration { get; set; }
-        private double Price { get; set; }
-        private List<TunningPart> tunningParts { get; set;} = new List<TunningPart>();
+        public string Model {  get; set; }
+        public string Brand { get; set; }
+        public int Horsepower { get; set; }
+        public double Brakeforce { get; set; }
+        public double Traction {  get; set; }
+        public double Weight { get; set; }
+        public int Highspeed { get; set; }
+        public double Acceleration { get; set; }
+        public double Price { get; set; }
+        public bool Modified { get; set; }
+        public List<TunningPart> tunningParts { get; set;} = new List<TunningPart>();
 
         public Car() { }
-        public Car(string model, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, List<TunningPart> tunningParts)
+        public Car(string model, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
-            this.Model = model;
-            this.Brand = brand;
-            this.Horsepower = horsepower;
-            this.Brakeforce = brakeforce;
-            this.Traction = traction;
-            this.Weight = weight;
-            this.Highspeed = highspeed;
-            this.Acceleration = acceleration;
-            this.Price = price;
+            Model = model;
+            Brand = brand;
+            Horsepower = horsepower;
+            Brakeforce = brakeforce;
+            Traction = traction;
+            Weight = weight;
+            Highspeed = highspeed;
+            Acceleration = acceleration;
+            Price = price;
+            this.Modified = modified;
             this.tunningParts = tunningParts;
         }
     }
