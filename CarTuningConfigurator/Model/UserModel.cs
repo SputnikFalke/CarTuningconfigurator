@@ -20,8 +20,6 @@ namespace CarTuningConfigurator.Model
             //User user = new User("Fabio", "Dauru");
             //addUser(user);
             users = dBConnect.GetAllUsers();
-            
-
         }
         public void addUser(User user)
         {
