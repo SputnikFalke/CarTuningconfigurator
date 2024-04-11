@@ -13,18 +13,18 @@ namespace CarTuningConfigurator.Model
     class UserModel
     {
         private List<User> users = new List<User>();
-        DBConnect dBConnect;
+        DBConnect dBConnect;//Controller
         public UserModel()
         {
-            dBConnect = new DBConnect();
+            dBConnect = new DBConnect(); //Controller
             //User user = new User("Fabio", "Dauru");
             //addUser(user);
-            users = dBConnect.GetAllUsers();
+            users = dBConnect.GetAllUsers(); //Controller
         }
         public bool addUser(User user)
         {
-          //dBConnect.InsertUserToDb(user);
-          bool result = false;
+            //dBConnect.InsertUserToDb(user); //Controller
+            bool result = false;
             users.Add(user);
             foreach (var user2 in users)
             {
