@@ -55,13 +55,13 @@ namespace CarTuningConfigurator.View
                 MessageBox.Show("ups");
             }
         }
-                  
-            
-        
+
+
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(register == null)
+            if (register == null)
             {
                 register = new Register();
             }
@@ -69,9 +69,9 @@ namespace CarTuningConfigurator.View
 
 
             register.Show();
-            Application.Current.Windows[0].Close();            
+            Application.Current.Windows[0].Close();
 
-            
+
         }
     }
 }

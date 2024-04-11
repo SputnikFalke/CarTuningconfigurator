@@ -12,9 +12,18 @@ namespace CarTuningConfigurator.Model
 
         public TunningPartModel() { }
 
-        public void addTunnungPart(TunningPart tunningPart)
+        public bool addTunnungPart(TunningPart tunningPart)
         {
+            bool result = false;
             tunningParts.Add(tunningPart);
+            foreach (var tunningPart2 in tunningParts)
+            {
+                if(tunningPart2.Name == tunningPart.Name)
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
 
         public TunningPart searchTunningPart(string name)
@@ -28,8 +37,9 @@ namespace CarTuningConfigurator.Model
             }
             return null;
         }
-        public void updateTunningPart(string name,  TunningPart newTuningPart)
+        public bool updateTunningPart(string name,  TunningPart newTuningPart)
         {
+            bool result = false;
             foreach(var tunningPart in tunningParts)
             {
                 if (tunningPart.Name == name)
@@ -42,19 +52,34 @@ namespace CarTuningConfigurator.Model
                     tunningPart.ChangeOfWeight = newTuningPart.ChangeOfWeight;
                     tunningPart.ChangeOfPrice = newTuningPart.ChangeOfPrice;
                     tunningPart.ChangeOfHighspeed = newTuningPart.ChangeOfHighspeed;
-                    tunningPart.ChangeOfAcceleration = newTuningPart.ChangeOfAcceleration;                }
+                    tunningPart.ChangeOfAcceleration = newTuningPart.ChangeOfAcceleration;              
+                    
+                    if(tunningPart.Name ==  newTuningPart.Name && tunningPart.ChangeOfTraction == newTuningPart.ChangeOfTraction && tunningPart.ChangeOfWeight == newTuningPart.ChangeOfWeight && tunningPart.ChangeOfHighspeed == newTuningPart.ChangeOfHighspeed && tunningPart.ChangeOfPrice == newTuningPart.ChangeOfPrice && tunningPart.ChangeOfBrakeForce == newTuningPart.ChangeOfBrakeForce && tunningPart.ChangeOfAcceleration == newTuningPart.ChangeOfAcceleration)
+                    {
+                        result = true;
+                    }
+                }
             }
+            return result;
         }
-        public void deleteTunningPart (string name)
+        public bool deleteTunningPart (string name)
         {
+            bool result = true;
             foreach(var tunningPart in tunningParts)
             {
                 if(tunningPart.Name == name)
                 {
                     tunningParts.Remove(tunningPart);
-
+                    foreach(var tunningPart2 in tunningParts)
+                    {
+                        if (tunningPart2.Name == name)
+                        {
+                            result = false;
+                        }
+                    }
                 }
             }
+            return result;
         }
     }
 }
