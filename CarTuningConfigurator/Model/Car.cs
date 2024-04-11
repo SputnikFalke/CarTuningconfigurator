@@ -17,20 +17,22 @@ namespace CarTuningConfigurator.Model
         public int Highspeed { get; set; }
         public double Acceleration { get; set; }
         public double Price { get; set; }
+        public bool Modified { get; set; }
         public List<TunningPart> tunningParts { get; set;} = new List<TunningPart>();
 
         public Car() { }
-        public Car(string model, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, List<TunningPart> tunningParts)
+        public Car(string model, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
-            this.Model = model;
-            this.Brand = brand;
-            this.Horsepower = horsepower;
-            this.Brakeforce = brakeforce;
-            this.Traction = traction;
-            this.Weight = weight;
-            this.Highspeed = highspeed;
-            this.Acceleration = acceleration;
-            this.Price = price;
+            Model = model;
+            Brand = brand;
+            Horsepower = horsepower;
+            Brakeforce = brakeforce;
+            Traction = traction;
+            Weight = weight;
+            Highspeed = highspeed;
+            Acceleration = acceleration;
+            Price = price;
+            this.Modified = modified;
             this.tunningParts = tunningParts;
         }
     }

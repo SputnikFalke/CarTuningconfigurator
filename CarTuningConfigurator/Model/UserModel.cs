@@ -17,9 +17,18 @@ namespace CarTuningConfigurator.Model
             User user = new User("Elia", "Kuster");
             addUser(user);
         }
-        public void addUser(User user)
+        public bool addUser(User user)
         {
+            bool result = false;
             users.Add(user);
+            foreach (var user2 in users)
+            {
+                if(user2.Username == user.Username)
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
 
         public User checkUser(string username, string password) 
@@ -31,15 +40,22 @@ namespace CarTuningConfigurator.Model
             return null;
         }
 
-        public void updateCarsFromUser(string username, List<Car>cars)
+        public bool updateCarsFromUser(string username, List<Car>cars)
         {
+            bool result = false;
             foreach (var user in users)
             {
                 if (user.Username == username)
                 {
                     user.cars = cars;
+                    if(user.cars == cars)
+                    {
+                        result = true;
+                    }
                 }
+
             }
+            return result;
         }
 
         
