@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Height="396" Width="732">
 
-    <Border Background="#272537" ></Border>
+    <Border Background="#272537" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Border>
     
 </Window>

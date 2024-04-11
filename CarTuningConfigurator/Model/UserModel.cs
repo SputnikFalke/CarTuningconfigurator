@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver.GeoJsonObjectModel;
+﻿using CarTuningConfigurator.DatabaseConnection;
+using MongoDB.Driver.GeoJsonObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,14 +13,18 @@ namespace CarTuningConfigurator.Model
     class UserModel
     {
         private List<User> users = new List<User>();
+        DBConnect dBConnect;
         public UserModel()
         {
-            User user = new User("Elia", "Kuster");
-            addUser(user);
+            dBConnect = new DBConnect();
+            //User user = new User("Fabio", "Dauru");
+            //addUser(user);
+            users = dBConnect.GetAllUsers();
         }
         public bool addUser(User user)
         {
-            bool result = false;
+          //dBConnect.InsertUserToDb(user);
+          bool result = false;
             users.Add(user);
             foreach (var user2 in users)
             {
@@ -30,6 +35,11 @@ namespace CarTuningConfigurator.Model
             }
             return result;
         }
+       
+        public void deleteUser(User user) 
+        {
+            dBConnect.DeleteUser(user);
+        } 
 
         public User checkUser(string username, string password) 
         {

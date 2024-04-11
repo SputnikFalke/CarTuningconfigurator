@@ -7,8 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="472" d:DesignWidth="700"
       Title="Register" Width="700" Height="472">
-
-
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="93*"/>
