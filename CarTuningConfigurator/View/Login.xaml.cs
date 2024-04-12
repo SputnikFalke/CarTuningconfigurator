@@ -27,6 +27,7 @@ namespace CarTuningConfigurator.View
         LoginController controller = new LoginController();
         Home home;
         Register register;
+        Admin admin;
 
         public Login()
         {
@@ -35,22 +36,29 @@ namespace CarTuningConfigurator.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            bool result = controller.checkUser(Username1.Text, Password.Password);
-            int count = 0;
+            string result = controller.checkUser(Username1.Text, Password.Password);
 
-            if (result == true)
+            if (result == "user")
             {
                 if (home == null)
                 {
                     home = new Home();
                 }
-                home = new Home();
                 MessageBox.Show("Anmeldung erfolgreich");
                 home.Show();
             }
+            else if(result == "admin")
+            {
+                if(admin == null)
+                {
+                    admin = new Admin();
+                }
+                MessageBox.Show("Anmeldung erfolgreich, Chef");
+                admin.Show();
+            }
             else
             {
-                MessageBox.Show("ups");
+                MessageBox.Show("Anmeldung fehlgeschlagen");
             }
         }
 
@@ -64,17 +72,9 @@ namespace CarTuningConfigurator.View
                 register = new Register();
             }
 
-
-
             register.Show();
             Application.Current.Windows[0].Close();
-
-
         }
 
-        private void SaveData(object sender, RoutedEventArgs e)
-        { 
-            
-        }
     }
 }

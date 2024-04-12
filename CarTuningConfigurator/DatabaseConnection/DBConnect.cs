@@ -6,16 +6,22 @@ using Amazon.Runtime.SharedInterfaces;
 using CarTuningConfigurator.Model;
 using System.Text;
 using System.Configuration;
+using MongoDB.Bson.Serialization;
+using System.Collections.ObjectModel;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace CarTuningConfigurator.DatabaseConnection
 {
     class DBConnect
     {
         private List<User> users;
+        private List<Car> cars;
+        private List<TunningPart> tunningParts;
         const string DatabaseName = "CarTuningConfigurator";
         const string ConnectionString = "mongodb://localhost:27017";
-        string collectioname = "User";
-        private IMongoCollection<BsonDocument> collection;
+        string collectionameUser = "User";
+        string collectionameCar = "Car";
+        string collectionameTunningPart = "TunningPart";
         private IMongoDatabase db;
 
         // --------------------- Connect toDatabase ----------------------
@@ -25,74 +31,144 @@ namespace CarTuningConfigurator.DatabaseConnection
             db = client.GetDatabase(DatabaseName);
         }
 
-
         // ---------------------- User and Database ----------------------
         // CRUD-Methodes for Users in Database
 
-        public List<User> GetAllUsers() 
-        {
-            ConnectToDb();
-            users = new List<User>();
-            collection = db.GetCollection<BsonDocument>(collectioname);
-            List<BsonDocument> usersBSON = collection.Find(new BsonDocument()).ToList();
 
-            foreach (var bsonUser in usersBSON) 
+
+        public List<User> GetAllUsers()
+        {
+
+            ConnectToDb();
+
+            var collection = db.GetCollection<User>(collectionameUser);
+            var result = collection.Find(new BsonDocument()).ToList();
+            users = new List<User>();
+            foreach (User user in result)
             {
-                User user = BsonToUser(bsonUser);
                 users.Add(user);
             }
             
             return users;
         }
+
+        public List<Car> GetAllCars()
+        {
+            ConnectToDb();
+
+            var collection = db.GetCollection<Car>(collectionameCar);
+            List<Car> result = collection.Find(new BsonDocument()).ToList();
+            cars = new List<Car>();
+            foreach (var car in result)
+            {
+                cars.Add(car);
+            }
+            return cars;
+        }
+
+        public List<TunningPart> GetAllTunningPart()
+        {
+            ConnectToDb();
+
+            var collection = db.GetCollection<TunningPart>(collectionameTunningPart);
+            List<TunningPart> result = collection.Find(new BsonDocument()).ToList();
+            tunningParts = new List<TunningPart>();
+            foreach (var tunningPart in result)
+            {
+                tunningParts.Add(tunningPart);
+            }
+            return tunningParts;
+        }
+
         public void InsertUserToDb(User user) 
         {
             ConnectToDb();
-            collection = db.GetCollection<BsonDocument>(collectioname);
-            collection.InsertOne(UserToBson(user));
+
+            var collection = db.GetCollection<User>(collectionameUser);
+            collection.InsertOne(user);
         }
 
-        
-        internal void DeleteUser(User user)
+        public void InsertCarToDb(Car car)
         {
             ConnectToDb();
-            collection = db.GetCollection<BsonDocument>(collectioname);
-            collection.DeleteOne(UserToBson(user));
 
+            var collection = db.GetCollection<Car>(collectionameCar);
+            collection.InsertOne(car);
         }
 
-        // Convert Users from and into BSON-Documents
-
-        public BsonDocument UserToBson(User user)
+        public void InsertTunningPartToDb(TunningPart tunningPart)
         {
-            var Id = "XXXXX-Y";
-            var username = user.Username;
-            var password = user.Password;
+            ConnectToDb();
 
-            var doc = new BsonDocument
-            {
-                { "_Id",  Id},
-                { "username",  username},
-                { "password",  password}
-            };
-
-            return doc;
+            var collection = db.GetCollection<TunningPart>(collectionameTunningPart);
+            collection.InsertOne(tunningPart);
         }
 
-        public User BsonToUser(BsonDocument doc) 
+        public void DeleteUser(User user)
         {
-            var _username = doc["username"];
-            var _password = doc["password"];
+            ConnectToDb();
+            var collection = db.GetCollection<User>(collectionameUser);
+            List<User> result = collection.Find(new BsonDocument()).ToList();
+            var filter = Builders<User>.Filter.Eq<Guid>(u => u.Id, user.Id);
+            collection.DeleteOne(filter);
+        }
 
-            String username = _username.AsString;
-            String password = _password.AsString;
+        public void DeleteCar(Car car)
+        {
+            ConnectToDb();
+            var collection = db.GetCollection<Car>(collectionameCar);
+            List<Car> result = collection.Find(new BsonDocument()).ToList();
+            var filter = Builders<Car>.Filter.Eq<Guid>(u => u.Id, car.Id);
+            collection.DeleteOne(filter);
+        }
 
-            User user = new User(username, password);
+        public void DeleteTunningPart(TunningPart tunningPart)
+        {
+            ConnectToDb();
+            var collection = db.GetCollection<TunningPart>(collectionameTunningPart);
+            List<TunningPart> result = collection.Find(new BsonDocument()).ToList();
+            var filter = Builders<TunningPart>.Filter.Eq<Guid>(u => u.Id, tunningPart.Id);
+            collection.DeleteOne(filter);
+        }
 
-            return user;
+        public void UpdateCar(Car car, Car newcar)
+        {
+            var collection = db.GetCollection<Car>(collectionameCar);
+            var filter = Builders<Car>.Filter.Eq<Guid>(u => u.Id, car.Id);
+            collection.ReplaceOne(filter, newcar);
+        }
+
+        public void UpdateTunningPart(TunningPart tunningPart, TunningPart newTunningPart)
+        {
+            var collection = db.GetCollection<TunningPart>(collectionameTunningPart);
+            var filter = Builders<TunningPart>.Filter.Eq<Guid>(u => u.Id, tunningPart.Id);
+            collection.ReplaceOne(filter, newTunningPart);
+        }
+
+        public void UpdateUser(User user, User newUser)
+        {
+            var collection = db.GetCollection<User>(collectionameUser);
+            var filter = Builders<User>.Filter.Eq<Guid>(u => u.Id, user.Id);
+            collection.ReplaceOne(filter, newUser);
+        }
+
+        public void UpdateTunningPartsFromCar(Car car, List<TunningPart> tunningParts)
+        {
+            var collection = db.GetCollection<Car>(collectionameCar);
+            var filter = Builders<Car>.Filter.Eq<Guid>(u => u.Id, car.Id);
+            var update = Builders<Car>.Update.Set(car => car.tunningParts, tunningParts);
+            collection.UpdateOne(filter, update);
+        }
+
+        public void UpdateCarsFromUser(User user, List<Car> cars)
+        {
+            var collection = db.GetCollection<User>(collectionameUser);
+            var filter = Builders<User>.Filter.Eq<Guid>(u => u.Id, user.Id);
+            var update = Builders<User>.Update.Set(user => user.cars, cars);
+            collection.UpdateOne(filter, update);
         }
 
 
-        // ---------------------- Car and Database ----------------------
     }
 
 }
