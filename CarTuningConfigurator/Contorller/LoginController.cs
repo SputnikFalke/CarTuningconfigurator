@@ -1,7 +1,10 @@
-﻿using CarTuningConfigurator.Model;
+﻿using CarTuningConfigurator.DatabaseConnection;
+using CarTuningConfigurator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,18 +12,32 @@ namespace CarTuningConfigurator.Contorller
 {
     internal class LoginController
     {
-        UserModel userModel = new UserModel();
+        UserModel userModel;
+        DBConnect dBConnect;
+        const string alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        public LoginController()
+        {
+            dBConnect = new DBConnect();
+            userModel = new UserModel();
+            userModel.users = dBConnect.GetAllUsers();
+        }
+
         public string addUser(string username, string password, string confirmpassword)
         {
-            
+
             string resultat;
             if(username.Count() >= 5) 
             {
                 if(password.Count() >= 5 && password == confirmpassword) 
                 {
-                    User user = new User(username, password);
-                    userModel.addUser(user);
+                    string salt = "";
+                    string hashedPassword = HashPassword(salt, password);
+                    User user = new User(username, hashedPassword);
+                    dBConnect.InsertUserToDb(user);
+                    userModel.users = dBConnect.GetAllUsers();
                     resultat = "erfolgreich";
+
+
                 }
                 else
                 {
@@ -33,12 +50,19 @@ namespace CarTuningConfigurator.Contorller
             }
             return resultat;
         }
-        public bool checkUser(string username, string password) 
+        public string checkUser(string username, string password) 
         {
-            bool result = false;
-            if(userModel.checkUser(username, password) != null) 
-            { 
-                result = true;
+            userModel.users = dBConnect.GetAllUsers();
+            string result = null;
+            string salt = "";
+            string hashedPassword = HashPassword(salt, password);
+            if(username == "Elia" &&  password == "Kuster")
+            {
+                result = "admin";
+            }
+            else if(userModel.checkUser(username, hashedPassword) !=null) 
+            {
+                result = "user";
             }
             return result;
         }
@@ -46,5 +70,34 @@ namespace CarTuningConfigurator.Contorller
         {
             userModel.updateCarsFromUser(username, myCars);
         }
+
+
+        public static string HashPassword(string salt, string password)
+        {
+            string mergedPass = string.Concat(salt, password);
+            return EncryptUsingMD5(mergedPass);
+        }
+
+        public static string EncryptUsingMD5(string inputStr)
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(inputStr));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                StringBuilder sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                    sBuilder.Append(data[i].ToString("x2"));
+
+                // Return the hexadecimal string.
+                return sBuilder.ToString();
+            }
+        }
+
     }
 }
