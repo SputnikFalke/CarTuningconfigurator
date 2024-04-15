@@ -11,7 +11,6 @@
   <ItemGroup>
 
     <None Remove="Pictures\FerrrariF40WhiteLibertyWalkWidebody.jpg" />
-    <None Remove="Pictures\mazdaMiata1990.avif" />
     <None Remove="Pictures\mazdaRx7.jpg" />
     <None Remove="Pictures\toyotaSupraMk4.jpg" />
   </ItemGroup>
@@ -28,7 +27,6 @@
 
   <ItemGroup>
     <Resource Include="Pictures\FerrrariF40WhiteLibertyWalkWidebody.jpg" />
-    <Resource Include="Pictures\mazdaMiata1990.avif" />
     <Resource Include="Pictures\mazdaRx7.jpg" />
     <Resource Include="Pictures\toyotaSupraMk4.jpg" />
   </ItemGroup>

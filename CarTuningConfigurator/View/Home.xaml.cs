@@ -29,5 +29,13 @@ namespace CarTuningConfigurator.View
             
         }
 
+        private void ToStandartCars(object sender, RoutedEventArgs e)
+        {
+            int zIndex1 = Panel.GetZIndex(HomePanel);
+            int zIndex2 = Panel.GetZIndex(StandartCarsPanel);
+            Panel.SetZIndex(HomePanel, zIndex2);
+            Panel.SetZIndex(StandartCarsPanel, zIndex1);
+
+        }
     }
 }
