@@ -40,10 +40,7 @@ namespace CarTuningConfigurator.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(login == null)
-            {
-                login = new Login();
-            }
+            login = new Login();
             login.Show();
             Application.Current.Windows[0].Close();
         }
