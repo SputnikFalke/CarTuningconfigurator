@@ -135,6 +135,7 @@ namespace CarTuningConfigurator.DatabaseConnection
         {
             var collection = db.GetCollection<Car>(collectionameCar);
             var filter = Builders<Car>.Filter.Eq<Guid>(u => u.Id, car.Id);
+            newcar.Id = car.Id;
             collection.ReplaceOne(filter, newcar);
         }
 
@@ -142,6 +143,7 @@ namespace CarTuningConfigurator.DatabaseConnection
         {
             var collection = db.GetCollection<TunningPart>(collectionameTunningPart);
             var filter = Builders<TunningPart>.Filter.Eq<Guid>(u => u.Id, tunningPart.Id);
+            newTunningPart.Id = tunningPart.Id;
             collection.ReplaceOne(filter, newTunningPart);
         }
 
@@ -149,6 +151,7 @@ namespace CarTuningConfigurator.DatabaseConnection
         {
             var collection = db.GetCollection<User>(collectionameUser);
             var filter = Builders<User>.Filter.Eq<Guid>(u => u.Id, user.Id);
+            newUser.Id = user.Id;
             collection.ReplaceOne(filter, newUser);
         }
 

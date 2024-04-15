@@ -40,21 +40,17 @@ namespace CarTuningConfigurator.View
 
             if (result == "user")
             {
-                if (home == null)
-                {
-                    home = new Home();
-                }
+                home = new Home();
                 MessageBox.Show("Anmeldung erfolgreich");
                 home.Show();
+                Application.Current.Windows[0].Close();
             }
             else if(result == "admin")
             {
-                if(admin == null)
-                {
-                    admin = new Admin();
-                }
+                admin = new Admin();
                 MessageBox.Show("Anmeldung erfolgreich, Chef");
                 admin.Show();
+                Application.Current.Windows[0].Close();
             }
             else
             {
