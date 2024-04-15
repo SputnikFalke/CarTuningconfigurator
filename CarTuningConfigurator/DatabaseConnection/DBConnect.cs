@@ -31,11 +31,7 @@ namespace CarTuningConfigurator.DatabaseConnection
             db = client.GetDatabase(DatabaseName);
         }
 
-        // ---------------------- User and Database ----------------------
-        // CRUD-Methodes for Users in Database
-
-
-
+        // ---------------- Get Everything from Database -----------------
         public List<User> GetAllUsers()
         {
 
@@ -51,7 +47,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             
             return users;
         }
-
         public List<Car> GetAllCars()
         {
             ConnectToDb();
@@ -65,7 +60,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             }
             return cars;
         }
-
         public List<TunningPart> GetAllTunningPart()
         {
             ConnectToDb();
@@ -79,7 +73,7 @@ namespace CarTuningConfigurator.DatabaseConnection
             }
             return tunningParts;
         }
-
+        // --------------------- Insert to Database ----------------------
         public void InsertUserToDb(User user) 
         {
             ConnectToDb();
@@ -87,7 +81,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             var collection = db.GetCollection<User>(collectionameUser);
             collection.InsertOne(user);
         }
-
         public void InsertCarToDb(Car car)
         {
             ConnectToDb();
@@ -95,7 +88,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             var collection = db.GetCollection<Car>(collectionameCar);
             collection.InsertOne(car);
         }
-
         public void InsertTunningPartToDb(TunningPart tunningPart)
         {
             ConnectToDb();
@@ -103,7 +95,7 @@ namespace CarTuningConfigurator.DatabaseConnection
             var collection = db.GetCollection<TunningPart>(collectionameTunningPart);
             collection.InsertOne(tunningPart);
         }
-
+        // -------------------- Delete from Database ---------------------
         public void DeleteUser(User user)
         {
             ConnectToDb();
@@ -112,7 +104,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             var filter = Builders<User>.Filter.Eq<Guid>(u => u.Id, user.Id);
             collection.DeleteOne(filter);
         }
-
         public void DeleteCar(Car car)
         {
             ConnectToDb();
@@ -121,7 +112,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             var filter = Builders<Car>.Filter.Eq<Guid>(u => u.Id, car.Id);
             collection.DeleteOne(filter);
         }
-
         public void DeleteTunningPart(TunningPart tunningPart)
         {
             ConnectToDb();
@@ -130,7 +120,7 @@ namespace CarTuningConfigurator.DatabaseConnection
             var filter = Builders<TunningPart>.Filter.Eq<Guid>(u => u.Id, tunningPart.Id);
             collection.DeleteOne(filter);
         }
-
+        // -------------- Update Everything from Database ----------------
         public void UpdateCar(Car car, Car newcar)
         {
             var collection = db.GetCollection<Car>(collectionameCar);
@@ -138,7 +128,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             newcar.Id = car.Id;
             collection.ReplaceOne(filter, newcar);
         }
-
         public void UpdateTunningPart(TunningPart tunningPart, TunningPart newTunningPart)
         {
             var collection = db.GetCollection<TunningPart>(collectionameTunningPart);
@@ -146,7 +135,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             newTunningPart.Id = tunningPart.Id;
             collection.ReplaceOne(filter, newTunningPart);
         }
-
         public void UpdateUser(User user, User newUser)
         {
             var collection = db.GetCollection<User>(collectionameUser);
@@ -154,7 +142,7 @@ namespace CarTuningConfigurator.DatabaseConnection
             newUser.Id = user.Id;
             collection.ReplaceOne(filter, newUser);
         }
-
+        // -------------------- Update from Database ---------------------
         public void UpdateTunningPartsFromCar(Car car, List<TunningPart> tunningParts)
         {
             var collection = db.GetCollection<Car>(collectionameCar);
@@ -162,7 +150,6 @@ namespace CarTuningConfigurator.DatabaseConnection
             var update = Builders<Car>.Update.Set(car => car.tunningParts, tunningParts);
             collection.UpdateOne(filter, update);
         }
-
         public void UpdateCarsFromUser(User user, List<Car> cars)
         {
             var collection = db.GetCollection<User>(collectionameUser);
