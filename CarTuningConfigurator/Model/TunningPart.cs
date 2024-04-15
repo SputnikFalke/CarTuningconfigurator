@@ -8,6 +8,7 @@ namespace CarTuningConfigurator.Model
 {
     internal class TunningPart
     {
+        public Guid Id { get; set; }
         public string Name {  get; set; }
         public string Category { get; set; }
         public int ChangeOfHorsePower { get; set; }

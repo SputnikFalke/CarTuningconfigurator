@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +11,7 @@ namespace CarTuningConfigurator.Model
 {
     class User
     {
+        public Guid Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public List<Car> cars { get; set; } = new List<Car>();

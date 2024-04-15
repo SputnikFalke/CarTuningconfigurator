@@ -12,34 +12,14 @@ namespace CarTuningConfigurator.Model
 {
     class UserModel
     {
-        private List<User> users = new List<User>();
+        public List<User> users = new List<User>();
         DBConnect dBConnect;//Controller
         public UserModel()
         {
-            dBConnect = new DBConnect(); //Controller
-            //User user = new User("Fabio", "Dauru");
-            //addUser(user);
-            users = dBConnect.GetAllUsers(); //Controller
-        }
-        public bool addUser(User user)
-        {
-            //dBConnect.InsertUserToDb(user); //Controller
-            bool result = false;
-            users.Add(user);
-            foreach (var user2 in users)
-            {
-                if(user2.Username == user.Username)
-                {
-                    result = true;
-                }
-            }
-            return result;
+            dBConnect = new DBConnect(); 
+            users = dBConnect.GetAllUsers(); 
         }
        
-        public void deleteUser(User user) 
-        {
-            dBConnect.DeleteUser(user);
-        } 
 
         public User checkUser(string username, string password) 
         {
@@ -58,10 +38,7 @@ namespace CarTuningConfigurator.Model
                 if (user.Username == username)
                 {
                     user.cars = cars;
-                    if(user.cars == cars)
-                    {
-                        result = true;
-                    }
+                    result = true;
                 }
 
             }

@@ -36,7 +36,6 @@ namespace CarTuningConfigurator.View
         {
             string resultat = loginController.addUser(Username1.Text, Password.Password, ConfirmPasswordT.Password);
             MessageBox.Show(resultat);
-            MessageBox.Show(Password.Password);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
