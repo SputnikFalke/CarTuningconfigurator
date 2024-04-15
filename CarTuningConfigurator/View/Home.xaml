@@ -9,9 +9,68 @@
 
     <Border Background="#272537" >
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+            <Grid x:Name="HomePanel" Panel.ZIndex="1" Background="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Label Foreground="White" Grid.Column="1" FontSize="25" Margin="0,5,0,0" >Car Tuning Configurator</Label>
+
+                <Button Grid.Column="1" Grid.Row="2" Name="BtnToStandartCars" Click="ToStandartCars">
+                    <Image Source="C:\Users\Student\source\repos\CarTuningConfigurator\CarTuningConfigurator\Pictures\Mclaren.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
+
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                    
+                </Button>
+                <TextBlock Foreground="GhostWhite" Text="Standart Cars" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Margin="10" FontSize="30" FontWeight="ExtraBold" HorizontalAlignment="Stretch"/>
+
+                <Button Grid.Column="3" Grid.Row="2" Name="BtnToTunedCars">
+                    <Image Source="C:\Users\Student\source\repos\CarTuningConfigurator\CarTuningConfigurator\Pictures\NissanSilvia.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
+
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+
+                </Button>
+                <TextBlock Foreground="GhostWhite" Text="Your Tuned Cars" Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" Margin="10" FontSize="30" FontWeight="ExtraBold" HorizontalAlignment="Stretch"/>
+
+            </Grid>
+
+            <Grid x:Name="StandartCarsPanel" Panel.ZIndex="0" Background="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                
+                
+                
+            </Grid>
+
+            <Grid x:Name="TunedCarsPanel" Panel.ZIndex="0" Background="Black">
+                
+            </Grid>
         </Grid>
     </Border>
     
