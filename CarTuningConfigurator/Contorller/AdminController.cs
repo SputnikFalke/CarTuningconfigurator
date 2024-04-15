@@ -3,6 +3,7 @@ using CarTuningConfigurator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +24,24 @@ namespace CarTuningConfigurator.Contorller
             dBConnect = new DBConnect();
         }
 
+        public void addUser(string username, string password)
+        {
+            string salt = "";
+            string hashedPassword = HashPassword(salt, password);
+            User user = new User(username, hashedPassword);
+            dBConnect.InsertUserToDb(user);
+            userModel.users = dBConnect.GetAllUsers();
+        }
+        public void updateUser(string thisUsername, string username, string password)
+        {
+            string salt = "";
+            string hashedPassword = HashPassword(salt, password);
+            userModel.users = dBConnect.GetAllUsers();
+            User newUser = new User(username, hashedPassword);
+            User user = userModel.searchUser(thisUsername);
+            dBConnect.UpdateUser(user, newUser);
+            userModel.users = dBConnect.GetAllUsers();
+        }
         public bool deleteUser(string username)
         {
             bool result = false;
@@ -139,6 +158,31 @@ namespace CarTuningConfigurator.Contorller
             tunningPartModel.tunningParts = dBConnect.GetAllTunningPart();
         }
 
-        
+        public static string HashPassword(string salt, string password)
+        {
+            string mergedPass = string.Concat(salt, password);
+            return EncryptUsingMD5(mergedPass);
+        }
+
+        public static string EncryptUsingMD5(string inputStr)
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(inputStr));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                StringBuilder sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                    sBuilder.Append(data[i].ToString("x2"));
+
+                // Return the hexadecimal string.
+                return sBuilder.ToString();
+            }
+        }
     }
 }

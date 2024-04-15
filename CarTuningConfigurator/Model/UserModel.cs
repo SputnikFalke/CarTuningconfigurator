@@ -45,6 +45,18 @@ namespace CarTuningConfigurator.Model
             return result;
         }
 
-        
+        public User searchUser(string username)
+        {
+            foreach (var user in users)
+            {
+                if (user.Username == username)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+
     }
 }
