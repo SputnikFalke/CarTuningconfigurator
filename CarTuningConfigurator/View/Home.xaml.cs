@@ -1,6 +1,6 @@
 ﻿using CarTuningConfigurator.Contorller;
-using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
+using CarTuningConfigurator.View;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -84,7 +84,6 @@ namespace CarTuningConfigurator.View
 
             foreach (Car car in cars)
             {
-
                 if (car.Modified == true)
                 {
                     var binding = new Binding("Image");
@@ -119,5 +118,40 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(HomePanel, zIndex1);
         }
 
+        private void ToDetailView(object sender, RoutedEventArgs e)
+        {
+            int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
+            int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
+            Panel.SetZIndex(StandartCarsPanel, zIndex2);
+            Panel.SetZIndex(DetailviewOfCar, zIndex1);
+        }
+
+        private void ToSelectionOfStandartCars(object sender, RoutedEventArgs e)
+        {
+            int zIndex1 = Panel.GetZIndex(DetailviewOfCar);
+            int zIndex2 = Panel.GetZIndex(StandartCarsPanel);
+            Panel.SetZIndex(DetailviewOfCar, zIndex2);
+            Panel.SetZIndex(StandartCarsPanel, zIndex1);
+        }
+
+        private void UpgradeBrakes(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            BreakUpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(BreakUpgradesPanel);
+            Panel.SetZIndex(BreakUpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+        }
+
+        private void GoBackToUpgradeSelection(object sender, RoutedEventArgs e)
+        {
+            BreakUpgradesPanel.Visibility = Visibility.Collapsed;
+            UpgradeBrake.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(BreakUpgradesPanel);
+            int zIndex2 = Panel.GetZIndex(UpgradeBrake);
+            Panel.SetZIndex(UpgradeBrake, zIndex2);
+            Panel.SetZIndex(BreakUpgradesPanel, zIndex1);
+        }
     }
 }
