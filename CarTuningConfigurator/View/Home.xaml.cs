@@ -27,14 +27,9 @@ namespace CarTuningConfigurator.View
         public Home()
         {
             InitializeComponent();
-        }
-
-        private void ToStandartCars(object sender, RoutedEventArgs e)
-        {
-            int zIndex1 = Panel.GetZIndex(HomePanel);
-            int zIndex2 = Panel.GetZIndex(StandartCarsPanel);
-            Panel.SetZIndex(HomePanel, zIndex2);
-            Panel.SetZIndex(StandartCarsPanel, zIndex1);
+            
+            //
+            // This Part renders Cars into the StandartCars View
             List<Car> cars = controller.cars;
 
             foreach (Car car in cars)
@@ -64,24 +59,9 @@ namespace CarTuningConfigurator.View
                     WrapPanelForStandartCarsImages.Children.Add(btn);
                 }
             }
-        }
-
-        private void StandartCarsToMainMenu(object sender, RoutedEventArgs e)
-        {
-            int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
-            int zIndex2 = Panel.GetZIndex(HomePanel);
-            Panel.SetZIndex(StandartCarsPanel, zIndex2);
-            Panel.SetZIndex(HomePanel, zIndex1);
-        }
-
-        private void ToTunedCars(object sender, RoutedEventArgs e)
-        {
-            int zIndex1 = Panel.GetZIndex(HomePanel);
-            int zIndex2 = Panel.GetZIndex(TunedCarsPanel);
-            Panel.SetZIndex(HomePanel, zIndex2);
-            Panel.SetZIndex(TunedCarsPanel, zIndex1);
-            List<Car> cars = controller.cars;
-
+            // End of Render
+            //
+            // This Part renders Cars into the TunedCars View
             foreach (Car car in cars)
             {
                 if (car.Modified == true)
@@ -108,6 +88,33 @@ namespace CarTuningConfigurator.View
                     WrapPanelForStandartCarsImages.Children.Add(btn);
                 }
             }
+            // End of Render
+
+        }
+
+        private void ToStandartCars(object sender, RoutedEventArgs e)
+        {
+            int zIndex1 = Panel.GetZIndex(HomePanel);
+            int zIndex2 = Panel.GetZIndex(StandartCarsPanel);
+            Panel.SetZIndex(HomePanel, zIndex2);
+            Panel.SetZIndex(StandartCarsPanel, zIndex1);
+
+        }
+
+        private void StandartCarsToMainMenu(object sender, RoutedEventArgs e)
+        {
+            int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
+            int zIndex2 = Panel.GetZIndex(HomePanel);
+            Panel.SetZIndex(StandartCarsPanel, zIndex2);
+            Panel.SetZIndex(HomePanel, zIndex1);
+        }
+
+        private void ToTunedCars(object sender, RoutedEventArgs e)
+        {
+            int zIndex1 = Panel.GetZIndex(HomePanel);
+            int zIndex2 = Panel.GetZIndex(TunedCarsPanel);
+            Panel.SetZIndex(HomePanel, zIndex2);
+            Panel.SetZIndex(TunedCarsPanel, zIndex1);
         }
 
         private void TunedCarsToMainMenu(object sender, RoutedEventArgs e)
@@ -152,6 +159,13 @@ namespace CarTuningConfigurator.View
             int zIndex2 = Panel.GetZIndex(UpgradeBrake);
             Panel.SetZIndex(UpgradeBrake, zIndex2);
             Panel.SetZIndex(BreakUpgradesPanel, zIndex1);
+        }
+
+        private void LogOut(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
         }
     }
 }
