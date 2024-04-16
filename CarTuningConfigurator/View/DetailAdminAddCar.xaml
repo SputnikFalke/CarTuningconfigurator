@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarTuningConfigurator.View"
         mc:Ignorable="d"
-        Title="DetailAdminAddCar" Height="600" Width="500">
+        Title="DetailAdminAddCar" Height="650" Width="500">
     <Grid>
         <StackPanel Margin="0,0,0,0">
             <Label x:Name="title" Content="Car Tunning Configuration" Height="68" FontSize="35" HorizontalAlignment="Center" FontWeight="Bold" VerticalContentAlignment="Bottom"/>
         </StackPanel>
         <Grid Margin="0,84,0,0">
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -29,24 +30,26 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="Model" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
             <Label Grid.Column="0" Grid.Row="1" Content="Brand" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="2" Content="Horsepower" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="3" Content="BrakeForce" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="4" Content="Traction" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="5" Content="Weight" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="6" Content="Highspeed" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="7" Content="Acceleration" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="8" Content="Price" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Image" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Horsepower" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="4" Content="BrakeForce" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="5" Content="Traction" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="6" Content="Weight" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="7" Content="Highspeed" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="8" Content="Acceleration" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="9" Content="Price" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
             <TextBox Grid.Column="1" Grid.Row="0" Background="#FFDFF3FD" Height="30" x:Name="Model" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
             <TextBox Grid.Column="1" Grid.Row="1" Background="#FFDFF3FD" Height="30" x:Name="Brand" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Background="#FFDFF3FD" Height="30" x:Name="Horsepower" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <TextBox Grid.Column="1" Grid.Row="3" Background="#FFDFF3FD" Height="30" x:Name="BrakeForce" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <TextBox Grid.Column="1" Grid.Row="4" Background="#FFDFF3FD" Height="30" x:Name="Traction" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <TextBox Grid.Column="1" Grid.Row="5" Background="#FFDFF3FD" Height="30" x:Name="Weight" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <TextBox Grid.Column="1" Grid.Row="6" Background="#FFDFF3FD" Height="30" x:Name="Hightspeed" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <TextBox Grid.Column="1" Grid.Row="7" Background="#FFDFF3FD" Height="30" x:Name="Acceleration" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <TextBox Grid.Column="1" Grid.Row="8" Background="#FFDFF3FD" Height="30" x:Name="Price" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <Button x:Name="Cancel" Grid.Column="0" Grid.Row="9" Content="Cancel" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Cancel_Click" Height="40"/>
-            <Button x:Name="Save" Grid.Column="1" Grid.Row="9" Content="Save" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Save_Click" Height="40"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Background="#FFDFF3FD" Height="30" x:Name="Image" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Background="#FFDFF3FD" Height="30" x:Name="Horsepower" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Background="#FFDFF3FD" Height="30" x:Name="BrakeForce" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <TextBox Grid.Column="1" Grid.Row="5" Background="#FFDFF3FD" Height="30" x:Name="Traction" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <TextBox Grid.Column="1" Grid.Row="6" Background="#FFDFF3FD" Height="30" x:Name="Weight" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <TextBox Grid.Column="1" Grid.Row="7" Background="#FFDFF3FD" Height="30" x:Name="Hightspeed" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <TextBox Grid.Column="1" Grid.Row="8" Background="#FFDFF3FD" Height="30" x:Name="Acceleration" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <TextBox Grid.Column="1" Grid.Row="9" Background="#FFDFF3FD" Height="30" x:Name="Price" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <Button x:Name="Cancel" Grid.Column="0" Grid.Row="10" Content="Cancel" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Cancel_Click" Height="40"/>
+            <Button x:Name="Save" Grid.Column="1" Grid.Row="10" Content="Save" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Save_Click" Height="40"/>
 
         </Grid>
     </Grid>
