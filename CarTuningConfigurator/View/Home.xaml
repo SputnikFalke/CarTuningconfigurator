@@ -25,7 +25,16 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
+                <Image Source="https://images.unsplash.com/photo-1512036849132-48508f294900?q=8" Grid.ColumnSpan="5" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
                 <Label Foreground="White" Grid.Column="1" FontSize="25" Margin="0,5,0,0" >Car Tuning Configurator</Label>
+                <Button Click="LogOut" Name="BackToLoginBtn" Grid.Column="3" Width="60" Margin="7" HorizontalAlignment="Right" Content="Log Out" FontWeight="Bold" FontSize="12" Background="GhostWhite">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
 
                 <!-- Button for Standart Cars -->
                 <Button Grid.Column="1" Grid.Row="2" Name="BtnToStandartCars" Click="ToStandartCars">
