@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarTuningConfigurator.View"
         mc:Ignorable="d"
-        Title="DetailAdminAddTunningPart" Height="600" Width="500">
+        Title="DetailAdminAddTunningPart" Height="650" Width="500">
     <Grid>
         <StackPanel Margin="0,0,0,0">
             <Label x:Name="title" Content="Car Tunning Configuration" Height="68" FontSize="35" HorizontalAlignment="Center" FontWeight="Bold" VerticalContentAlignment="Bottom"/>
@@ -22,20 +22,22 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="Name" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="1" Content="New Category" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="2" Content="New Change of Horsepower" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="3" Content="New Change of Brakeforce" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="4" Content="New Change of Traction" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="5" Content="New Change of Weight" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="6" Content="New Change of Highspeed" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="7" Content="New Change of Acceleration" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
-            <Label Grid.Column="0" Grid.Row="8" Content="New Change of Price" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Category" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Change of Horsepower" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Change of Brakeforce" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="4" Content="Change of Traction" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="5" Content="Change of Weight" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="6" Content="Change of Highspeed" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="7" Content="Change of Acceleration" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="8" Content="Change of Price" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+            <Label Grid.Column="0" Grid.Row="9" Content="Stage" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
             <TextBox Grid.Column="1" Grid.Row="0" Background="#FFDFF3FD" Height="30" x:Name="Name" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
             <TextBox Grid.Column="1" Grid.Row="1" Background="#FFDFF3FD" Height="30" x:Name="Category" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
             <TextBox Grid.Column="1" Grid.Row="2" Background="#FFDFF3FD" Height="30" x:Name="ChangeOfHorsepower" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
@@ -45,8 +47,9 @@
             <TextBox Grid.Column="1" Grid.Row="6" Background="#FFDFF3FD" Height="30" x:Name="ChangeOfHighspeed" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
             <TextBox Grid.Column="1" Grid.Row="7" Background="#FFDFF3FD" Height="30" x:Name="ChangeOfAcceleration" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
             <TextBox Grid.Column="1" Grid.Row="8" Background="#FFDFF3FD" Height="30" x:Name="ChangeOfPrice" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
-            <Button x:Name="Cancel" Grid.Column="0" Grid.Row="9" Content="Cancel" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Cancel_Click" Height="40"/>
-            <Button x:Name="Save" Grid.Column="1" Grid.Row="9" Content="Save" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Save_Click" Height="40"/>
+            <TextBox Grid.Column="1" Grid.Row="9" Background="#FFDFF3FD" Height="30" x:Name="Stage" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
+            <Button x:Name="Cancel" Grid.Column="0" Grid.Row="10" Content="Cancel" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Cancel_Click" Height="40"/>
+            <Button x:Name="Save" Grid.Column="1" Grid.Row="10" Content="Save" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Save_Click" Height="40"/>
         </Grid>
     </Grid>
 </Window>

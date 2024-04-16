@@ -63,9 +63,9 @@ namespace CarTuningConfigurator.Contorller
       
         //--------------------- Car ---------------------
         //public void addCar(string model, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
-        public void addCar(string model, string brand, string image, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
+        public void addCar(string model, string brand, string image, string littleImage, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
-            Car car = new Car(model, brand, image, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified ,tunningParts);
+            Car car = new Car(model, brand, image, littleImage, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified ,tunningParts);
             dBConnect.InsertCarToDb(car);
             carModel.cars = dBConnect.GetAllCars();
         }
@@ -84,12 +84,11 @@ namespace CarTuningConfigurator.Contorller
                 return null;
             }
         }
-        public void updateCar(string thisModel, string model, string image, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
+        public void updateCar(string thisModel, string model, string image, string littleImage, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
             carModel.cars = dBConnect.GetAllCars();
-            Car newCar = new Car(model, brand, image, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified, tunningParts);
+            Car newCar = new Car(model, brand, image, littleImage, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified, tunningParts);
             Car car = carModel.searchCar(thisModel);
-
             dBConnect.UpdateCar(car, newCar);
             carModel.cars = dBConnect.GetAllCars();
         }
@@ -141,9 +140,9 @@ namespace CarTuningConfigurator.Contorller
                 return null;
             }
         }
-        public void addTunningPart(string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice)
+        public void addTunningPart(string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice, int stage)
         {
-            TunningPart tunningPart = new TunningPart(name, category, changeOfHorsePower, changeOfBrakeForce, changeOfTraction, changeOfWeight, changeOfHighspeed, changeOfAcceleration, changeOfPrice);
+            TunningPart tunningPart = new TunningPart(name, category, changeOfHorsePower, changeOfBrakeForce, changeOfTraction, changeOfWeight, changeOfHighspeed, changeOfAcceleration, changeOfPrice, stage);
             dBConnect.InsertTunningPartToDb(tunningPart);
             tunningPartModel.tunningParts = dBConnect.GetAllTunningPart();
         }
@@ -163,10 +162,10 @@ namespace CarTuningConfigurator.Contorller
             }
             return result;
         }
-        public void updateTunningPart(string thisName, string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice)
+        public void updateTunningPart(string thisName, string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice, int stage)
         {
             tunningPartModel.tunningParts = dBConnect.GetAllTunningPart();
-            TunningPart newTunningPart = new TunningPart(name, category, changeOfHorsePower, changeOfBrakeForce, changeOfTraction, changeOfWeight, changeOfHighspeed, changeOfAcceleration, changeOfPrice);
+            TunningPart newTunningPart = new TunningPart(name, category, changeOfHorsePower, changeOfBrakeForce, changeOfTraction, changeOfWeight, changeOfHighspeed, changeOfAcceleration, changeOfPrice, stage);
             TunningPart tunningPart = tunningPartModel.searchTunningPart(thisName);
 
             dBConnect.UpdateTunningPart(tunningPart, newTunningPart);
