@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CarTuningConfigurator.Contorller;
+using CarTuningConfigurator.Model;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 
 namespace CarTuningConfigurator.View
@@ -19,9 +23,35 @@ namespace CarTuningConfigurator.View
     /// </summary>
     public partial class DetailAdminAddTunningPart : Window
     {
+        AdminController adminController = new AdminController();
         public DetailAdminAddTunningPart()
         {
             InitializeComponent();
+        }
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Windows[2].Close();
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(ChangeOfHorsepower.Text, out int horsepower) && double.TryParse(ChangeOfBrakeForce.Text, out double brakeforce) && double.TryParse(ChangeOfTraction.Text, out double traction) && double.TryParse(ChangeOfWeight.Text, out double weight) && int.TryParse(ChangeOfHighspeed.Text, out int highspeed) && double.TryParse(ChangeOfAcceleration.Text, out double acceleration) && double.TryParse(ChangeOfPrice.Text, out double price))
+            {
+                if(Category.Text == "Engine" || Category.Text == "Breaks" || Category.Text == "Wing" || Category.Text == "Turbo" || Category.Text == "Transmission" || Category.Text == "WeightReduction" || Category.Text == "Tires" || Category.Text == "ChipTunning" || Category.Text == "Bodywork")
+                {
+                    adminController.addTunningPart(Name.Text, Category.Text, horsepower, brakeforce, traction, weight, highspeed, acceleration, price);
+                    MessageBox.Show("Tunning Part erfolgreich hinzugefügt");
+                    Application.Current.Windows[2].Close();
+                }
+                else
+                {
+                    MessageBox.Show("Die Kategorien sind: Engine, Breaks, Wing, Turbo, Transmissin, WeightReduction, Tires, ChipTunning, Bodywork");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Tunning Part konnte nicht hinzugefügt werden, achten Sie auf die Datentypen");
+            }
         }
     }
 }

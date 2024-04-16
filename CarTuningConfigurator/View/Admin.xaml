@@ -20,6 +20,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
@@ -28,22 +30,19 @@
             <Label Grid.Column="2" Grid.Row="0" Content="manage Tunning Part" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-            <Button Grid.Row="1" Grid.Column="0" Content="add User" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Width="247" Height="50" Margin="0,16,0,0" Click="add_User" Background="#FF5859AF"/>
-            <Button Grid.Row="1" Grid.Column="0" Content="update User" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" RenderTransformOrigin="0.5,0.5" Height="50" Background="#FF5859AF" Click="update_User"/>
-            <Button Grid.Column="0"  Grid.Row="1" Content="delete User" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Width="247" Margin="0,155,0,0" Height="50" Background="#FF5859AF" Click="delete_User"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="add Car" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Width="247" Height="50" Margin="0,16,0,0" Background="#FF5859AF" Click="add_Car"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="update Car" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="update_Car"/>
-            <Button Grid.Column="1" Grid.Row="1" Content="delete Car" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0" Width="247" Height="50" Background="#FF5859AF" Click="delete_Car"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="add Tunning Part" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Width="247" Height="50" Margin="0,16,0,0" Background="#FF5859AF" Click="add_TunningPart"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="update Tunning Part" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="update_TunningPart"/>
-            <Button Grid.Column="2" Grid.Row="1" Content="delete Tunning Part" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 155,0,0" Width="247" Height="50" Background="#FF5859AF" Click="delete_TunningPart"/>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="0,0,262,0" Grid.Row="1"/>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="1"/>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="262,0,0,0" Grid.Row="1"/>
+            <Button Grid.Row="1" Grid.Column="0" Content="add User" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Click="add_User" Background="#FF5859AF"/>
+            <Button Grid.Row="2" Grid.Column="0" Content="update User" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="update_User"/>
+            <Button Grid.Column="0"  Grid.Row="3" Content="delete User" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="delete_User"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="add Car" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="add_Car"/>
+            <Button Grid.Column="1" Grid.Row="2" Content="update Car" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="update_Car"/>
+            <Button Grid.Column="1" Grid.Row="3" FontSize="13" Content="delete Car" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="delete_Car"/>
+            <Button Grid.Column="2" Grid.Row="1" Content="add Tunning Part" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="add_TunningPart"/>
+            <Button Grid.Column="2" Grid.Row="2" Content="update Tunning Part" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="update_TunningPart"/>
+            <Button Grid.Column="2" Grid.Row="3" Content="delete Tunning Part" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Width="247" Height="50" Background="#FF5859AF" Click="delete_TunningPart"/>
             <Border BorderBrush="Black" BorderThickness="1"/>
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1"/>
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2"/>
-
+            <Button x:Name="Back" Grid.Row="4" Grid.ColumnSpan="3" Content="Back" Background="#FFC8D5DE" FontSize="20" Click="Back_Click"/>
         </Grid>
 
     </Grid>

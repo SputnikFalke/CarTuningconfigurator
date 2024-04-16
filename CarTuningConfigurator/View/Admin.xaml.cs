@@ -73,5 +73,13 @@ namespace CarTuningConfigurator.View
             DetailAdminDeleteTunningPart detailAdminDeleteTunningPart = new DetailAdminDeleteTunningPart();
             detailAdminDeleteTunningPart.Show();
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            MessageBox.Show("Bye Bye Boss");
+            login.Show();
+            Application.Current.Windows[0].Close();
+        }
     }
 }

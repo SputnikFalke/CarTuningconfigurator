@@ -19,7 +19,6 @@ namespace CarTuningConfigurator.Model
         public double ChangeOfAcceleration { get; set; }
         public double ChangeOfPrice { get; set;}
 
-        public TunningPart() { }
         public TunningPart(string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice)
         {
             this.Name = name;
