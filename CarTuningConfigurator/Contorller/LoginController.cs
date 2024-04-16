@@ -7,6 +7,8 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media.Media3D;
 
 namespace CarTuningConfigurator.Contorller
 {
@@ -24,18 +26,35 @@ namespace CarTuningConfigurator.Contorller
         public string addUser(string username, string password, string confirmpassword)
         {
 
-            string resultat;
+            string resultat = null;
             if(username.Count() >= 5) 
             {
                 if(password.Count() >= 5 && password == confirmpassword) 
                 {
-                    string salt = "";
-                    string hashedPassword = HashPassword(salt, password);
-                    User user = new User(username, hashedPassword);
+                    bool otherUsername = false;
+                    foreach (var user1 in userModel.users)
+                    {
+                        if (username == user1.Username)
+                        {
+                            otherUsername = true;
+                        }
+                    }  
+                    if (otherUsername == false) 
+                    {
 
-                    dBConnect.InsertUserToDb(user);
-                    userModel.users = dBConnect.GetAllUsers();
-                    resultat = "erfolgreich";
+                        string salt = "";
+                        string hashedPassword = HashPassword(salt, password);
+                        User user = new User(username, hashedPassword);
+
+                        dBConnect.InsertUserToDb(user);
+                        userModel.users = dBConnect.GetAllUsers();
+                        resultat = "erfolgreich";
+                    }
+                    else
+                    {
+                        resultat = "Der Username ist bereits vergeben";
+                    }
+
 
 
                 }

@@ -18,8 +18,9 @@ namespace CarTuningConfigurator.Model
         public int ChangeOfHighspeed { get; set;}
         public double ChangeOfAcceleration { get; set; }
         public double ChangeOfPrice { get; set;}
+        public int stage { get; set; }
 
-        public TunningPart(string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice)
+        public TunningPart(string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice, int stage)
         {
             this.Name = name;
             this.Category = category;
@@ -30,6 +31,7 @@ namespace CarTuningConfigurator.Model
             this.ChangeOfHighspeed = changeOfHighspeed;
             this.ChangeOfAcceleration = changeOfAcceleration;
             this.ChangeOfPrice = changeOfPrice;
+            this.stage = stage;
         }
     }
 }

@@ -165,7 +165,7 @@
 
                 <DockPanel Grid.Column="1" Grid.Row="3">
                     <Button Margin="5" Width="110" Click="ToSelectionOfStandartCars">BACK</Button>
-                    <Button Margin="5" Width="110" >SAVE</Button>
+                    <Button Margin="5" Width="110" Click="SaveCar" >SAVE</Button>
                 </DockPanel>
 
                 <Grid Grid.Column="1" Grid.Row="1" Background="Transparent" Margin="0,0,25,0" Panel.ZIndex="0" Name="BreakUpgradesPanel" Visibility="Collapsed">
