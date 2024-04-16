@@ -14,14 +14,13 @@ namespace CarTuningConfigurator.Contorller
     {
         UserModel userModel;
         DBConnect dBConnect;
-        const string alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         public LoginController()
         {
             dBConnect = new DBConnect();
             userModel = new UserModel();
             userModel.users = dBConnect.GetAllUsers();
         }
-
+        //-------------------- User -------------------
         public string addUser(string username, string password, string confirmpassword)
         {
 
@@ -33,6 +32,7 @@ namespace CarTuningConfigurator.Contorller
                     string salt = "";
                     string hashedPassword = HashPassword(salt, password);
                     User user = new User(username, hashedPassword);
+
                     dBConnect.InsertUserToDb(user);
                     userModel.users = dBConnect.GetAllUsers();
                     resultat = "erfolgreich";
@@ -56,6 +56,7 @@ namespace CarTuningConfigurator.Contorller
             string result = null;
             string salt = "";
             string hashedPassword = HashPassword(salt, password);
+
             if(username == "Elia" &&  password == "Kuster")
             {
                 result = "admin";
@@ -70,8 +71,7 @@ namespace CarTuningConfigurator.Contorller
         {
             userModel.updateCarsFromUser(username, myCars);
         }
-
-
+        //-------------------- Hash -------------------
         public static string HashPassword(string salt, string password)
         {
             string mergedPass = string.Concat(salt, password);
@@ -85,12 +85,10 @@ namespace CarTuningConfigurator.Contorller
                 // Convert the input string to a byte array and compute the hash.
                 byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(inputStr));
 
-                // Create a new Stringbuilder to collect the bytes
-                // and create a string.
+                // Create a new Stringbuilder to collect the bytes and create a string
                 StringBuilder sBuilder = new StringBuilder();
 
-                // Loop through each byte of the hashed data 
-                // and format each one as a hexadecimal string.
+                // Loop through each byte of the hashed data/format each one as a hexadecimal string
                 for (int i = 0; i < data.Length; i++)
                     sBuilder.Append(data[i].ToString("x2"));
 

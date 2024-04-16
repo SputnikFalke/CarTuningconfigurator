@@ -50,7 +50,6 @@
             <TextBox Grid.Column="1" Grid.Row="9" Background="#FFDFF3FD" Height="30" x:Name="Price" FontSize="13" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="5,10,5,10"/>
             <Button x:Name="Cancel" Grid.Column="0" Grid.Row="10" Content="Cancel" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Cancel_Click" Height="40"/>
             <Button x:Name="Save" Grid.Column="1" Grid.Row="10" Content="Save" Margin="5, 5, 5, 5" FontSize="13" FontWeight="Bold" Background="#FF5859AF" Click="Save_Click" Height="40"/>
-
         </Grid>
     </Grid>
 </Window>

@@ -41,7 +41,7 @@ namespace CarTuningConfigurator.View
             }
             else
             {
-                MessageBox.Show("Auto konnte nicht hinzugefügt werden, achten Sie auf die Datentypen");
+                MessageBox.Show("Auto konnte nicht upgedatet werden, achten Sie auf die Datentypen");
             }
         }
     }

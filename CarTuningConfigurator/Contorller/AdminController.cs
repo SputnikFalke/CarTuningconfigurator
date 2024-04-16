@@ -23,12 +23,13 @@ namespace CarTuningConfigurator.Contorller
             userModel = new UserModel();
             dBConnect = new DBConnect();
         }
-
+        //-------------------- User ---------------------
         public void addUser(string username, string password)
         {
             string salt = "";
             string hashedPassword = HashPassword(salt, password);
             User user = new User(username, hashedPassword);
+
             dBConnect.InsertUserToDb(user);
             userModel.users = dBConnect.GetAllUsers();
         }
@@ -39,6 +40,7 @@ namespace CarTuningConfigurator.Contorller
             userModel.users = dBConnect.GetAllUsers();
             User newUser = new User(username, hashedPassword);
             User user = userModel.searchUser(thisUsername);
+
             dBConnect.UpdateUser(user, newUser);
             userModel.users = dBConnect.GetAllUsers();
         }
@@ -46,6 +48,7 @@ namespace CarTuningConfigurator.Contorller
         {
             bool result = false;
             userModel.users = dBConnect.GetAllUsers();
+
             foreach (User user in userModel.users)
             {
                 if (user.Username == username)
@@ -57,6 +60,9 @@ namespace CarTuningConfigurator.Contorller
             }
             return result;
         }
+      
+        //--------------------- Car ---------------------
+        //public void addCar(string model, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         public void addCar(string model, string brand, string image, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
             Car car = new Car(model, brand, image, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified ,tunningParts);
@@ -66,6 +72,7 @@ namespace CarTuningConfigurator.Contorller
         public Car searchCar(string model)
         {
             carModel.cars = dBConnect.GetAllCars();
+
             if(carModel.searchCar(model) != null)
             {
                 Car car = carModel.searchCar(model);
@@ -82,6 +89,7 @@ namespace CarTuningConfigurator.Contorller
             carModel.cars = dBConnect.GetAllCars();
             Car newCar = new Car(model, brand, image, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified, tunningParts);
             Car car = carModel.searchCar(thisModel);
+
             dBConnect.UpdateCar(car, newCar);
             carModel.cars = dBConnect.GetAllCars();
         }
@@ -89,6 +97,7 @@ namespace CarTuningConfigurator.Contorller
         {
             bool result = false;
             carModel.cars = dBConnect.GetAllCars();
+
             foreach (Car car in carModel.cars)
             {
                 if (car.Model == model)
@@ -104,6 +113,7 @@ namespace CarTuningConfigurator.Contorller
         {
             bool result = false;
             carModel.cars = dBConnect.GetAllCars();
+
             foreach (Car car in carModel.cars)
             {
                 if (car.Model == model)
@@ -115,9 +125,11 @@ namespace CarTuningConfigurator.Contorller
             }
             return result;
         }
+        //---------------- Tunning Part -----------------
         public TunningPart searchTunningPart(string name)
         {
             tunningPartModel.tunningParts = dBConnect.GetAllTunningPart();
+
             if (tunningPartModel.searchTunningPart(name) != null)
             {
                 TunningPart tunningPart = tunningPartModel.searchTunningPart(name);
@@ -139,6 +151,7 @@ namespace CarTuningConfigurator.Contorller
         {
             bool result = false;
             tunningPartModel.tunningParts = dBConnect.GetAllTunningPart();
+
             foreach (TunningPart tunningPart in tunningPartModel.tunningParts)
             {
                 if (tunningPart.Name == name)
@@ -152,12 +165,14 @@ namespace CarTuningConfigurator.Contorller
         }
         public void updateTunningPart(string thisName, string name, string category, int changeOfHorsePower, double changeOfBrakeForce, double changeOfTraction, double changeOfWeight, int changeOfHighspeed, double changeOfAcceleration, double changeOfPrice)
         {
+            tunningPartModel.tunningParts = dBConnect.GetAllTunningPart();
             TunningPart newTunningPart = new TunningPart(name, category, changeOfHorsePower, changeOfBrakeForce, changeOfTraction, changeOfWeight, changeOfHighspeed, changeOfAcceleration, changeOfPrice);
             TunningPart tunningPart = tunningPartModel.searchTunningPart(thisName);
+
             dBConnect.UpdateTunningPart(tunningPart, newTunningPart);
             tunningPartModel.tunningParts = dBConnect.GetAllTunningPart();
         }
-
+        //-------------------- Hash ---------------------
         public static string HashPassword(string salt, string password)
         {
             string mergedPass = string.Concat(salt, password);
@@ -171,12 +186,10 @@ namespace CarTuningConfigurator.Contorller
                 // Convert the input string to a byte array and compute the hash.
                 byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(inputStr));
 
-                // Create a new Stringbuilder to collect the bytes
-                // and create a string.
+                // Create a new Stringbuilder to collect the bytes and create a string
                 StringBuilder sBuilder = new StringBuilder();
 
-                // Loop through each byte of the hashed data 
-                // and format each one as a hexadecimal string.
+                // Loop through each byte of the hashed data/ format each one as a hexadecimal string
                 for (int i = 0; i < data.Length; i++)
                     sBuilder.Append(data[i].ToString("x2"));
 
