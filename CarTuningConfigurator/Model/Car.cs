@@ -23,7 +23,9 @@ namespace CarTuningConfigurator.Model
         public bool Modified { get; set; }
         public List<TunningPart> tunningParts { get; set;} = new List<TunningPart>();
 
-        public Car(string model, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
+
+
+
         public Car() { }
         public Car(string model, string brand, string image, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
