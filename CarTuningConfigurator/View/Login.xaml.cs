@@ -32,8 +32,8 @@ namespace CarTuningConfigurator.View
         public Login()
         {
             InitializeComponent();
-            home = new Home();
-            home.Show();
+            //home = new Home();
+            //home.Show();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

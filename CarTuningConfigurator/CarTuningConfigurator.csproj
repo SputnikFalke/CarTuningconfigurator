@@ -12,6 +12,7 @@
 
     <None Remove="Pictures\FerrrariF40WhiteLibertyWalkWidebody.jpg" />
     <None Remove="Pictures\mazdaRx7.jpg" />
+    <None Remove="Pictures\Mclaren.jpg" />
     <None Remove="Pictures\toyotaSupraMk4.jpg" />
   </ItemGroup>
 
@@ -28,7 +29,14 @@
   <ItemGroup>
     <Resource Include="Pictures\FerrrariF40WhiteLibertyWalkWidebody.jpg" />
     <Resource Include="Pictures\mazdaRx7.jpg" />
+    <Resource Include="Pictures\Mclaren.jpg" />
     <Resource Include="Pictures\toyotaSupraMk4.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\Home.xaml.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
 </Project>

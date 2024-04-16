@@ -73,7 +73,11 @@
 
                 <ScrollViewer Background="LightSkyBlue" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
                     <DockPanel>
-                        <WrapPanel Name="WrapPanelForStandartCarsImages" Margin="5"/>
+                        <WrapPanel Name="WrapPanelForStandartCarsImages" Margin="5">
+                            <Button x:Name="Car1" Click="ToDetailView" Margin="10" Height="150" Width="150">
+                                <Image Source="C:\Users\Student\source\repos\CarTuningConfigurator\CarTuningConfigurator\Pictures\McLaren.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button>
+                        </WrapPanel>
                     </DockPanel>
                 </ScrollViewer>
                 
@@ -97,10 +101,85 @@
 
                 <ScrollViewer Background="LightSkyBlue" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
                     <DockPanel>
-                        <WrapPanel Name="WrapPanelForTunedCarsImages" Margin="5"/>
+                        <WrapPanel Name="WrapPanelForTunedCarsImages" Margin="5">
+                            
+                        </WrapPanel>
                     </DockPanel>
                 </ScrollViewer>
                 
+            </Grid>
+            
+            <!-- Panel für Detail Ansicht -->
+            <Grid x:Name="DetailviewOfCar" Panel.ZIndex="0" Background="Black">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.ColumnSpan="5" Grid.RowSpan="5" Source="https://images.unsplash.com/photo-1594950195709-a14f66c242d7?q=8" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                <Grid Grid.Column="1" Grid.Row="1" Background="Transparent" Margin="0,0,25,0" Panel.ZIndex="1" Name="UpgradeBrake">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="LightGray" Opacity="0.5"/>
+                    <Button Grid.Row="1" Grid.Column="1" Opacity="1" Click="UpgradeBrakes">
+                        <Image Source="https://as2.ftcdn.net/v2/jpg/01/43/08/43/1000_F_143084385_XTGwx8kIR9nccSwq60cSRqwrqJVWd2n0.jpg"/>
+                    </Button>
+                </Grid>
+
+                <TextBlock Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" Background="LightGray" Opacity="0.5">
+                    Stats
+                </TextBlock>
+
+                <DockPanel Grid.Column="1" Grid.Row="3">
+                    <Button Margin="5" Width="110" Click="ToSelectionOfStandartCars">BACK</Button>
+                    <Button Margin="5" Width="110" >SAVE</Button>
+                </DockPanel>
+
+                <Grid Grid.Column="1" Grid.Row="1" Background="Transparent" Margin="0,0,25,0" Panel.ZIndex="0" Name="BreakUpgradesPanel" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Red" Opacity="0.5"/>
+
+                    <Button Content="Back" Grid.Column="2" Grid.Row="2" Click="GoBackToUpgradeSelection"/>
+
+                </Grid>
             </Grid>
         </Grid>
     </Border>
