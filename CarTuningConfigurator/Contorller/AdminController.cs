@@ -84,11 +84,11 @@ namespace CarTuningConfigurator.Contorller
                 return null;
             }
         }
-        public void updateCar(string thisModel, string model, string image, string littleImage, string brand, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
+        public void updateCar(string thisModel, string model, string brand, string image, string littleImage, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
             carModel.cars = dBConnect.GetAllCars();
-            Car newCar = new Car(model, brand, image, littleImage, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified, tunningParts);
             Car car = carModel.searchCar(thisModel);
+            Car newCar = new Car(model, brand, image, littleImage, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, modified, tunningParts);
             dBConnect.UpdateCar(car, newCar);
             carModel.cars = dBConnect.GetAllCars();
         }

@@ -415,8 +415,9 @@ namespace CarTuningConfigurator.View
 
         private void SaveCar(object sender, RoutedEventArgs e)
         {
-            //Car car = new Car();
-            //controller.saveCar(car);
+            Car car = new Car();
+            User user = new User();
+            controller.saveCar(user, car);
             //Achtung nur Provisorisch, der ausgewählte Car muss übergeben werden.
         }
     }
