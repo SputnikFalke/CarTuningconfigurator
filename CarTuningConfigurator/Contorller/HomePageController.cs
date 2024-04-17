@@ -1,5 +1,6 @@
 ﻿using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
+using MongoDB.Bson.Serialization.Serializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace CarTuningConfigurator.Contorller
         public List<Car> cars;
         private DBConnect DBConnect;
         private CarModel CarModel;
+        private UserModel UserModel;
 
         public HomePageController() 
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
+            UserModel = new UserModel();
         }
 
         public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
@@ -59,11 +62,13 @@ namespace CarTuningConfigurator.Contorller
             return car1;
         }
 
-        public void saveCar(Car car)
+        public void saveCar(User user, Car car)
         {
             if(car.Modified == true)
             {
                 DBConnect.InsertCarToDb(car);
+                user.cars.Add(car);
+                DBConnect.UpdateCarsFromUser(user, user.cars);
             }
             else
             {
