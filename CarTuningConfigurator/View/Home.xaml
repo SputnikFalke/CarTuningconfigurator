@@ -38,7 +38,7 @@
 
                 <!-- Button for Standart Cars -->
                 <Button Grid.Column="1" Grid.Row="2" Name="BtnToStandartCars" Click="ToStandartCars">
-                    <Image Source="C:\Users\Student\source\repos\CarTuningConfigurator\CarTuningConfigurator\Pictures\Mclaren.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                    <Image Source="https://images.unsplash.com/photo-1632993954512-b007106e6e11?q=8" Stretch="UniformToFill" VerticalAlignment="Center"/>
 
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -49,9 +49,9 @@
                 </Button>
                 <TextBlock Foreground="GhostWhite" Text="Standart Cars" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Margin="10" FontSize="30" FontWeight="ExtraBold" HorizontalAlignment="Stretch"/>
 
-                <!-- Buttton for Tuned Cars -->
+                <!-- Button for Tuned Cars -->
                 <Button Grid.Column="3" Grid.Row="2" Name="BtnToTunedCars" Click="ToTunedCars">
-                    <Image Source="C:\Users\Student\source\repos\CarTuningConfigurator\CarTuningConfigurator\Pictures\NissanSilvia.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                    <Image Source="https://images.unsplash.com/photo-1706155991879-d80513951c49?q=8" Stretch="UniformToFill" VerticalAlignment="Center"/>
 
                     <Button.Resources>
                         <Style TargetType="Border">
@@ -209,7 +209,7 @@
 
                 <DockPanel Grid.Column="1" Grid.Row="3">
                     <Button Margin="5" Width="110" Click="ToSelectionOfStandartCars">BACK</Button>
-                    <Button Margin="5" Width="110" Click="Save_Car">SAVE</Button>
+                    <Button Margin="5" Width="110" Click="Save_Car" Name="saveCarBtn" >SAVE</Button>
                 </DockPanel>
             </Grid>
         </Grid>
