@@ -16,13 +16,11 @@ namespace CarTuningConfigurator.Contorller
         public List<Car> cars;
         private DBConnect DBConnect;
         private CarModel CarModel;
-        private UserModel UserModel;
 
         public HomePageController() 
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
-            UserModel = new UserModel();
         }
 
         public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
