@@ -36,28 +36,27 @@ namespace CarTuningConfigurator.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            string result = controller.checkUser(Username1.Text, Password.Password);
+            User result = controller.checkUser(Username1.Text, Password.Password);
 
-            if (result == "user")
-            {
-                home = new Home();
-                MessageBox.Show("Anmeldung erfolgreich");
-                home.Show();
-                this.Close();
-            }
-            else if(result == "admin")
+            if (result.Username == "Elia")
             {
                 admin = new Admin();
                 MessageBox.Show("Anmeldung erfolgreich, Chef");
                 admin.Show();
-                this.Close();
+                this.Close();            
             }
-            else
+            else if(result == null)
             {
                 MessageBox.Show("Anmeldung fehlgeschlagen");
             }
+            else
+            {
+                home = new Home(result.Username);
+                MessageBox.Show("Anmeldung erfolgreich");
+                home.Show();
+                this.Close();
+            }
         }
-
 
 
 

@@ -86,6 +86,7 @@ namespace CarTuningConfigurator.DatabaseConnection
             ConnectToDb();
 
             var collection = db.GetCollection<Car>(collectionameCar);
+            car.Id = new Guid();
             collection.InsertOne(car);
         }
         public void InsertTunningPartToDb(TunningPart tunningPart)
