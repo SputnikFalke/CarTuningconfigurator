@@ -37,25 +37,28 @@ namespace CarTuningConfigurator.View
         {
 
             User result = controller.checkUser(Username1.Text, Password.Password);
-
-            if (result.Username == "Elia")
+            if (result == null)
             {
-                admin = new Admin();
-                MessageBox.Show("Anmeldung erfolgreich, Chef");
-                admin.Show();
-                this.Close();            
-            }
-            else if(result == null)
-            {
-                MessageBox.Show("Anmeldung fehlgeschlagen");
+                MessageBox.Show("Anmeldung falsch");
             }
             else
             {
-                home = new Home(result.Username);
-                MessageBox.Show("Anmeldung erfolgreich");
-                home.Show();
-                this.Close();
+                if (result.Username == "Elia")
+                {
+                    admin = new Admin();
+                    MessageBox.Show("Anmeldung erfolgreich, Chef");
+                    admin.Show();
+                    this.Close();
+                }
+                else
+                {
+                    home = new Home(result.Username);
+                    MessageBox.Show("Anmeldung erfolgreich");
+                    home.Show();
+                    this.Close();
+                }
             }
+
         }
 
 

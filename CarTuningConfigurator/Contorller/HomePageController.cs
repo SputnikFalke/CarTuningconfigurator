@@ -26,8 +26,10 @@ namespace CarTuningConfigurator.Contorller
             tunningParts = DBConnect.GetAllTunningPart();
         }
 
-        public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
+        public void updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
         {
+
+            car.tunningParts = tunningParts;
             int horsepower = car.Horsepower;
             double brakeforce = car.Brakeforce;
             double traction = car.Traction;
@@ -61,6 +63,7 @@ namespace CarTuningConfigurator.Contorller
             }
             Car car1 = new Car(car.Model, car.Brand, img, lilImg, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, true, tunningParts);
             return car1;
+
         }
 
         public void saveCar(User user, Car car)
