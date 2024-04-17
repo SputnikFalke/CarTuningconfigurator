@@ -23,43 +23,12 @@ namespace CarTuningConfigurator.Contorller
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
+            tunningParts = DBConnect.GetAllTunningPart();
         }
 
-        public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
+        public void updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
         {
-            int horsepower = car.Horsepower;
-            double brakeforce = car.Brakeforce;
-            double traction = car.Traction;
-            double weight = car.Weight;
-            int highspeed = car.Highspeed;
-            double price = car.Price;
-            double acceleration = car.Acceleration;
-            CarModel = new CarModel();
-            CarModel.updateTunningPartsFromCar(car.Model, tunningParts);
-
-            string img = car.Image.ToString();
-            string liImg = car.LittleImage.ToString();
-
-            foreach(var tunningPart in tunningParts)
-            {
-                horsepower = horsepower + tunningPart.ChangeOfHorsePower;
-                brakeforce = brakeforce + tunningPart.ChangeOfBrakeForce;
-                traction = traction + tunningPart.ChangeOfTraction;
-                weight = weight + tunningPart.ChangeOfWeight;
-                highspeed = highspeed + tunningPart.ChangeOfHighspeed;
-                price = price + tunningPart.ChangeOfPrice;
-                acceleration = acceleration + tunningPart.ChangeOfAcceleration;
-            }
-            if(brakeforce > 10)
-            {
-                brakeforce = 10;
-            }
-            if(traction > 10)
-            {
-                traction = 10;
-            }
-            Car car1 = new Car(car.Model, car.Brand, img, liImg, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, true, tunningParts);
-            return car1;
+            car.tunningParts = tunningParts;
         }
 
         public void saveCar(User user, Car car)
