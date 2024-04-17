@@ -27,12 +27,12 @@ namespace CarTuningConfigurator.View
     {
 
         public int horsePowerChangeTotal;
-        public int brakePowerChangeTotal;
-        public int weightChangeTotal;
-        public int tractionChangeTotal;
+        public double brakePowerChangeTotal;
+        public double weightChangeTotal;
+        public double tractionChangeTotal;
         public int highspeedChangeTotal;
-        public int accelerationChangeTotal;
-        public int priceChangeTotal;
+        public double accelerationChangeTotal;
+        public double priceChangeTotal;
 
         TunningPart result = null;
         TunningPart brakesResult = null;
@@ -45,6 +45,7 @@ namespace CarTuningConfigurator.View
         UserModel UserModel = new UserModel();
         Car currentCar;
         User theUser = null;
+        List<TunningPart> tunnings = new List<TunningPart>();
         string currentUpgradePanel;
         string currentPanel;
         
@@ -81,7 +82,7 @@ namespace CarTuningConfigurator.View
                     btn.Margin = new Thickness(10);
                     btn.Click += (s, e) =>
                     { 
-
+                        currentCar = car;
                         int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
                         int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
                         Panel.SetZIndex(StandartCarsPanel, zIndex2);
@@ -163,6 +164,7 @@ namespace CarTuningConfigurator.View
                         btn.Margin = new Thickness(10);
                         btn.Click += (s, e) =>
                         {
+
                             int zIndex1 = Panel.GetZIndex(TunedCarsPanel);
                             int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
                             Panel.SetZIndex(TunedCarsPanel, zIndex2);
@@ -428,10 +430,64 @@ namespace CarTuningConfigurator.View
                 } 
                 rdbtn.Checked += (sender, e) =>
                 {
-                    horsePowerChangeTotal = part.ChangeOfHorsePower + horsePowerChangeTotal;
-                    BrakePowerLabel.Content = value + "+" + horsePowerChangeTotal;
                     result = part;
                     setRightResult(result);
+
+                    if (engineResult != null)
+                    {
+                        foreach (var tunning in tunnings)
+                        {
+                            if(tunning.Name == engineResult.Name)
+                            {
+                                tunnings.Remove(tunning);
+                            }
+                        }
+                        tunnings.Add(engineResult);
+                    }
+
+                    if (WingResult != null)
+                    {
+                        tunnings.Add(WingResult);
+                    }
+                    if (TiresResult != null)
+                    {
+                        tunnings.Add(TiresResult);
+                    }
+                    if (brakesResult != null)
+                    {
+                        tunnings.Add(brakesResult);
+                    }
+                    if (TurboResult != null)
+                    {
+                        tunnings.Add(TurboResult);
+                    }
+                    
+                    if(tunnings.Count > 0)
+                    {
+                        controller.updateTunningPartfromCar(currentCar, tunnings);
+
+                        foreach (var part in tunnings)
+                        {
+                            horsePowerChangeTotal = horsePowerChangeTotal + part.ChangeOfHorsePower;
+                            brakePowerChangeTotal = brakePowerChangeTotal + part.ChangeOfBrakeForce;
+                            tractionChangeTotal = tractionChangeTotal + part.ChangeOfTraction;
+                            weightChangeTotal = weightChangeTotal + part.ChangeOfWeight;
+                            highspeedChangeTotal = highspeedChangeTotal + part.ChangeOfHighspeed;
+                            accelerationChangeTotal = accelerationChangeTotal + part.ChangeOfAcceleration;
+                            priceChangeTotal = priceChangeTotal + part.ChangeOfPrice;
+                        }
+
+
+                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal;
+                        BrakePowerLabel.Content = currentCar.Brakeforce + " + " + brakePowerChangeTotal;
+                        TractionLabel.Content = currentCar.Traction + " + " + tractionChangeTotal;
+                        WightLabel.Content = currentCar.Weight + " + " + weightChangeTotal;
+                        AccelerationLabel.Content = currentCar.Acceleration + " + " + accelerationChangeTotal;
+                        HighspeedLabel.Content = currentCar.Highspeed + " + " + highspeedChangeTotal;
+                        PriceLabel.Content = currentCar.Price + " + " + priceChangeTotal;
+                    }
+                    
+
                 };
                 rdbtn.Unchecked += (sender, e) =>
                 {
