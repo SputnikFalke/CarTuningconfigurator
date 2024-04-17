@@ -11,12 +11,14 @@ namespace CarTuningConfigurator.Contorller
     class HomePageController
     {
         public List<Car> cars;
+        public List<TunningPart> tunningParts;
         private DBConnect DBConnect;
 
         public HomePageController() 
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
+            tunningParts = DBConnect.GetAllTunningPart();
         }
 
 

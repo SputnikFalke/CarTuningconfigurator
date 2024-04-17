@@ -24,13 +24,16 @@ namespace CarTuningConfigurator.View
     public partial class Home : Window
     {
         HomePageController controller = new HomePageController();
+        Car currentCar;
         public Home()
         {
             InitializeComponent();
+            currentCar = new Car();    
             
             //
             // This Part renders Cars into the StandartCars View
             List<Car> cars = controller.cars;
+            List<TunningPart> tunningParts = controller.tunningParts;
 
             foreach (Car car in cars)
             {
@@ -48,7 +51,29 @@ namespace CarTuningConfigurator.View
                     btn.Margin = new Thickness(10);
                     btn.Click += (s, e) =>
                     {
-                        MessageBox.Show("Funktioniert so wiit");
+                        currentCar = car;
+
+                        int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
+                        int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
+                        Panel.SetZIndex(StandartCarsPanel, zIndex2);
+                        Panel.SetZIndex(DetailviewOfCar, zIndex1);
+
+                        var backgroundImagebinding = new Binding("Image");
+                        backgroundImagebinding.Source = car;
+                        DetailViewBackgroundImage.SetBinding(Image.SourceProperty, backgroundImagebinding);
+
+                        var brandBinding = new Binding("Brand");
+                        brandBinding.Source = car;
+                        BrandLabel.SetBinding(Label.ContentProperty, brandBinding);
+
+                        var modelBinding = new Binding("Model");
+                        modelBinding.Source = car;
+                        ModelLabel.SetBinding(Label.ContentProperty, modelBinding);
+
+                        var hpBinding = new Binding("Horsepower");
+                        hpBinding.Source = car;
+                        BrakePowerLabel.SetBinding(Label.ContentProperty, hpBinding);
+
                     };
 
                     img.SetBinding(Image.SourceProperty, binding);
@@ -89,7 +114,10 @@ namespace CarTuningConfigurator.View
                 }
             }
             // End of Render
-
+            //
+            // This renders Mods Into the mod list
+            
+           
         }
 
         private void ToStandartCars(object sender, RoutedEventArgs e)
@@ -131,6 +159,7 @@ namespace CarTuningConfigurator.View
             int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
             Panel.SetZIndex(StandartCarsPanel, zIndex2);
             Panel.SetZIndex(DetailviewOfCar, zIndex1);
+
         }
 
         private void ToSelectionOfStandartCars(object sender, RoutedEventArgs e)
@@ -144,21 +173,84 @@ namespace CarTuningConfigurator.View
         private void UpgradeBrakes(object sender, RoutedEventArgs e)
         {
             UpgradeBrake.Visibility = Visibility.Collapsed;
-            BreakUpgradesPanel.Visibility = Visibility.Visible;
+            UpgradesPanel.Visibility = Visibility.Visible;
             int zIndex1 = Panel.GetZIndex(UpgradeBrake);
-            int zIndex2 = Panel.GetZIndex(BreakUpgradesPanel);
-            Panel.SetZIndex(BreakUpgradesPanel, zIndex2);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
             Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            List<TunningPart> brakes = GetTunningParts("Breaks");
+            LoadPanel(brakes);
+
+        }
+
+        private void UpgradeEngine(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            List<TunningPart> engines = GetTunningParts("Engine");
+            LoadPanel(engines);
+
+        }
+
+        private void UpgradeTurbo(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            List<TunningPart> turbos = GetTunningParts("Turbo");
+            LoadPanel(turbos);
+
+        }
+
+        private void UpgradeTires(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            List<TunningPart> tires = GetTunningParts("Tires");
+            LoadPanel(tires);
+
+        }
+
+        private void UpgradeWing(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            List<TunningPart> wings = GetTunningParts("Wing");
+            LoadPanel(wings);
+
         }
 
         private void GoBackToUpgradeSelection(object sender, RoutedEventArgs e)
         {
-            BreakUpgradesPanel.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Collapsed;
             UpgradeBrake.Visibility = Visibility.Visible;
-            int zIndex1 = Panel.GetZIndex(BreakUpgradesPanel);
+            int zIndex1 = Panel.GetZIndex(UpgradesPanel);
             int zIndex2 = Panel.GetZIndex(UpgradeBrake);
             Panel.SetZIndex(UpgradeBrake, zIndex2);
-            Panel.SetZIndex(BreakUpgradesPanel, zIndex1);
+            Panel.SetZIndex(UpgradesPanel, zIndex1);
+
+            RadioButtonHallo.IsChecked = true;
+
         }
 
         private void LogOut(object sender, RoutedEventArgs e)
@@ -167,5 +259,37 @@ namespace CarTuningConfigurator.View
             login.Show();
             this.Close();
         }
+
+        private List<TunningPart> GetTunningParts(string Category) 
+        {
+            List<TunningPart> parts = new List<TunningPart>();
+
+            foreach (var part in controller.tunningParts) 
+            {
+                if (part.Category == Category) 
+                {
+                    parts.Add(part);
+                }
+            }
+
+            return parts;
+        }
+
+        private void LoadPanel(List<TunningPart> parts)
+        {
+            warppanelForTuningStages.Children.Clear();
+
+            foreach (TunningPart part in parts)
+            {
+                var rdbtn = new RadioButton();
+
+                var breaksBinding = new Binding();
+                breaksBinding.Source = part;
+                rdbtn.Content = part.Name;
+
+                warppanelForTuningStages.Children.Add(rdbtn);
+            }
+        }
+
     }
 }
