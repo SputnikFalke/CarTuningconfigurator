@@ -2,6 +2,7 @@
 using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
 using CarTuningConfigurator.View;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -46,6 +47,7 @@ namespace CarTuningConfigurator.View
         User theUser = null;
         List<TunningPart> tunnings = new List<TunningPart>();
         string currentUpgradePanel;
+        string currentPanel;
         
         public Home(string username)
         {
@@ -68,11 +70,15 @@ namespace CarTuningConfigurator.View
                     var binding = new Binding("LittleImage");
                     binding.Source = car;
                     var img = new Image();
+                    img.HorizontalAlignment = HorizontalAlignment.Center;
+                    img.VerticalAlignment = VerticalAlignment.Center;
 
                     var btn = new Button();
                     btn.Content = img;
                     btn.Height = 150;
                     btn.Width = 150;
+                    btn.HorizontalAlignment = HorizontalAlignment.Center;
+                    btn.VerticalAlignment = VerticalAlignment.Center;
                     btn.Margin = new Thickness(10);
                     btn.Click += (s, e) =>
                     { 
@@ -122,6 +128,8 @@ namespace CarTuningConfigurator.View
                         priceBinding.Source = car;
                         PriceLabel.SetBinding(Label.ContentProperty, priceBinding);
 
+                        saveCarBtn.Content = "SAVE";
+
                     };
 
                     img.SetBinding(Image.SourceProperty, binding);
@@ -135,7 +143,7 @@ namespace CarTuningConfigurator.View
             // End of Render
             //
             // This Part renders Cars into the TunedCars View
-            if(theUser != null)
+            if (theUser != null)
             {
                 foreach (Car car in theUser.cars)
                 {
@@ -144,14 +152,65 @@ namespace CarTuningConfigurator.View
                         var binding = new Binding("Image");
                         binding.Source = car;
                         var img = new Image();
+                        img.HorizontalAlignment = HorizontalAlignment.Center;
+                        img.VerticalAlignment = VerticalAlignment.Center;
 
                         var btn = new Button();
                         btn.Content = img;
                         btn.Height = 150;
                         btn.Width = 150;
+                        btn.HorizontalAlignment = HorizontalAlignment.Center;
+                        btn.VerticalAlignment = VerticalAlignment.Center;
                         btn.Margin = new Thickness(10);
                         btn.Click += (s, e) =>
                         {
+
+                            int zIndex1 = Panel.GetZIndex(TunedCarsPanel);
+                            int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
+                            Panel.SetZIndex(TunedCarsPanel, zIndex2);
+                            Panel.SetZIndex(DetailviewOfCar, zIndex1);
+
+                            var backgroundImagebinding = new Binding("Image");
+                            backgroundImagebinding.Source = car;
+                            DetailViewBackgroundImage.SetBinding(Image.SourceProperty, backgroundImagebinding);
+
+                            var brandBinding = new Binding("Brand");
+                            brandBinding.Source = car;
+                            BrandLabel.SetBinding(Label.ContentProperty, brandBinding);
+
+                            var modelBinding = new Binding("Model");
+                            modelBinding.Source = car;
+                            ModelLabel.SetBinding(Label.ContentProperty, modelBinding);
+
+                            var hpBinding = new Binding("Horsepower");
+                            hpBinding.Source = car;
+                            HorsePowerLabel.SetBinding(Label.ContentProperty, hpBinding);
+
+                            var bpBinding = new Binding("Breakpower");
+                            bpBinding.Source = car;
+                            BrakePowerLabel.SetBinding(Label.ContentProperty, bpBinding);
+
+                            var weightBinding = new Binding("Weight");
+                            weightBinding.Source = car;
+                            WightLabel.SetBinding(Label.ContentProperty, weightBinding);
+
+                            var tractionBinding = new Binding("Traction");
+                            tractionBinding.Source = car;
+                            TractionLabel.SetBinding(Label.ContentProperty, tractionBinding);
+
+                            var highspeedBinding = new Binding("Highspeed");
+                            highspeedBinding.Source = car;
+                            HighspeedLabel.SetBinding(Label.ContentProperty, highspeedBinding);
+
+                            var accelerationBinding = new Binding("Acceleration");
+                            accelerationBinding.Source = car;
+                            AccelerationLabel.SetBinding(Label.ContentProperty, accelerationBinding);
+
+                            var priceBinding = new Binding("Price");
+                            priceBinding.Source = car;
+                            PriceLabel.SetBinding(Label.ContentProperty, priceBinding);
+
+                            saveCarBtn.Content = "UPDATE";
 
                         };
 
@@ -160,18 +219,11 @@ namespace CarTuningConfigurator.View
                         HorizontalAlignment = HorizontalAlignment.Center;
                         VerticalAlignment = VerticalAlignment.Center;
 
-                        WrapPanelForStandartCarsImages.Children.Add(btn);
+                        WrapPanelForTunedCarsImages.Children.Add(btn);
                     }
                 }
             }
-
-
-            
-            // End of Render
-            //
-            // This renders Mods Into the mod list
-            
-           
+            // End of Render           
         }
 
         private void ToStandartCars(object sender, RoutedEventArgs e)
@@ -181,7 +233,11 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(HomePanel, zIndex2);
             Panel.SetZIndex(StandartCarsPanel, zIndex1);
 
+            currentPanel = "StandartCars";
+
         }
+
+        
 
         private void StandartCarsToMainMenu(object sender, RoutedEventArgs e)
         {
@@ -197,6 +253,9 @@ namespace CarTuningConfigurator.View
             int zIndex2 = Panel.GetZIndex(TunedCarsPanel);
             Panel.SetZIndex(HomePanel, zIndex2);
             Panel.SetZIndex(TunedCarsPanel, zIndex1);
+
+            currentPanel = "TunedCars";
+
         }
 
         private void TunedCarsToMainMenu(object sender, RoutedEventArgs e)
@@ -209,19 +268,33 @@ namespace CarTuningConfigurator.View
 
         private void ToDetailView(object sender, RoutedEventArgs e)
         {
-            int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
-            int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
-            Panel.SetZIndex(StandartCarsPanel, zIndex2);
-            Panel.SetZIndex(DetailviewOfCar, zIndex1);
-
+            int zIndex1 = Panel.GetZIndex(DetailviewOfCar);
+            int zIndex2 = Panel.GetZIndex(HomePanel);
+            Panel.SetZIndex(TunedCarsPanel, zIndex2);
+            Panel.SetZIndex(HomePanel, zIndex1);
         }
 
         private void ToSelectionOfStandartCars(object sender, RoutedEventArgs e)
         {
+
             int zIndex1 = Panel.GetZIndex(DetailviewOfCar);
             int zIndex2 = Panel.GetZIndex(StandartCarsPanel);
-            Panel.SetZIndex(DetailviewOfCar, zIndex2);
-            Panel.SetZIndex(StandartCarsPanel, zIndex1);
+            int zIndex3 = Panel.GetZIndex(TunedCarsPanel);
+
+
+            if (currentPanel == "StandartCars")
+            {
+                Panel.SetZIndex(DetailviewOfCar, zIndex2);
+                Panel.SetZIndex(StandartCarsPanel, zIndex1);
+            }
+            else if (currentPanel == "TunedCars")
+            {
+                Panel.SetZIndex(DetailviewOfCar, zIndex2);
+                Panel.SetZIndex(TunedCarsPanel, zIndex1);
+
+                saveCarBtn.Content = "hallo";
+
+            }
         }
 
         private void UpgradeBrakes(object sender, RoutedEventArgs e)
@@ -461,7 +534,7 @@ namespace CarTuningConfigurator.View
             controller.saveCar(theUser, currentCar);
         }
 
-        private void Save_Tunned_Car(object sender, RoutedEventArgs e)
+        private void Save_Tunned_Car()
         {
             controller.saveTunnedCar(theUser, currentCar);
         }
