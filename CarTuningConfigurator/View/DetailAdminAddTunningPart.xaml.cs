@@ -35,11 +35,11 @@ namespace CarTuningConfigurator.View
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(ChangeOfHorsepower.Text, out int horsepower) && double.TryParse(ChangeOfBrakeForce.Text, out double brakeforce) && double.TryParse(ChangeOfTraction.Text, out double traction) && double.TryParse(ChangeOfWeight.Text, out double weight) && int.TryParse(ChangeOfHighspeed.Text, out int highspeed) && double.TryParse(ChangeOfAcceleration.Text, out double acceleration) && double.TryParse(ChangeOfPrice.Text, out double price))
+            if (int.TryParse(ChangeOfHorsepower.Text, out int horsepower) && double.TryParse(ChangeOfBrakeForce.Text, out double brakeforce) && double.TryParse(ChangeOfTraction.Text, out double traction) && double.TryParse(ChangeOfWeight.Text, out double weight) && int.TryParse(ChangeOfHighspeed.Text, out int highspeed) && double.TryParse(ChangeOfAcceleration.Text, out double acceleration) && double.TryParse(ChangeOfPrice.Text, out double price) && int.TryParse(Stage.Text, out int stage) && stage <= 6)
             {
                 if(Category.Text == "Engine" || Category.Text == "Breaks" || Category.Text == "Wing" || Category.Text == "Turbo" || Category.Text == "Transmission" || Category.Text == "WeightReduction" || Category.Text == "Tires" || Category.Text == "ChipTunning" || Category.Text == "Bodywork")
                 {
-                    adminController.addTunningPart(Name.Text, Category.Text, horsepower, brakeforce, traction, weight, highspeed, acceleration, price);
+                    adminController.addTunningPart(Name.Text, Category.Text, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, stage);
                     MessageBox.Show("Tunning Part erfolgreich hinzugefügt");
                     Application.Current.Windows[2].Close();
                 }
@@ -50,7 +50,7 @@ namespace CarTuningConfigurator.View
             }
             else
             {
-                MessageBox.Show("Tunning Part konnte nicht hinzugefügt werden, achten Sie auf die Datentypen");
+                MessageBox.Show("Tunning Part konnte nicht hinzugefügt werden, achten Sie auf die Datentypen btw die Stage darf höchstens 6 sein");
             }
         }
     }

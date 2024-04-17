@@ -122,7 +122,7 @@ namespace CarTuningConfigurator.DatabaseConnection
         }
         // -------------- Update Everything from Database ----------------
         public void UpdateCar(Car car, Car newcar)
-        {
+        { 
             var collection = db.GetCollection<Car>(collectionameCar);
             var filter = Builders<Car>.Filter.Eq<Guid>(u => u.Id, car.Id);
             newcar.Id = car.Id;

@@ -13,6 +13,7 @@ namespace CarTuningConfigurator.Model
         public string Model {  get; set; }
         public string Brand { get; set; }
         public BitmapImage Image{ get; set; }
+        public BitmapImage LittleImage { get; set; }
         public int Horsepower { get; set; }
         public double Brakeforce { get; set; }
         public double Traction {  get; set; }
@@ -27,11 +28,12 @@ namespace CarTuningConfigurator.Model
 
 
         public Car() { }
-        public Car(string model, string brand, string image, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
+        public Car(string model, string brand, string image, string littleImage, int horsepower, double brakeforce, double traction, double weight, int highspeed, double acceleration, double price, bool modified, List<TunningPart> tunningParts)
         {
             Model = model;
             Brand = brand;
             Image = new BitmapImage(new Uri(image));
+            LittleImage = new BitmapImage(new Uri(littleImage));
             Horsepower = horsepower;
             Brakeforce = brakeforce;
             Traction = traction;

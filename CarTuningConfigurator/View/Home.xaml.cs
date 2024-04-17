@@ -1,4 +1,5 @@
 ﻿using CarTuningConfigurator.Contorller;
+using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
 using CarTuningConfigurator.View;
 using System;
@@ -40,7 +41,7 @@ namespace CarTuningConfigurator.View
 
                 if (car.Modified == false)
                 {
-                    var binding = new Binding("Image");
+                    var binding = new Binding("LittleImage");
                     binding.Source = car;
                     var img = new Image();
 
@@ -291,5 +292,12 @@ namespace CarTuningConfigurator.View
             }
         }
 
+
+        private void SaveCar(object sender, RoutedEventArgs e)
+        {
+            Car car = new Car();
+            controller.saveCar(car);
+            //Achtung nur Provisorisch, der ausgewählte Car muss übergeben werden.
+        }
     }
 }

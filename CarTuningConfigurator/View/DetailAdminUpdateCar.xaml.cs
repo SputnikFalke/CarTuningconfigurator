@@ -35,7 +35,8 @@ namespace CarTuningConfigurator.View
         {
             if (int.TryParse(Horsepower.Text, out int horsepower) && double.TryParse(BrakeForce.Text, out double brakeforce) && double.TryParse(Traction.Text, out double traction) && double.TryParse(Weight.Text, out double weight) && int.TryParse(Hightspeed.Text, out int highspeed) && double.TryParse(Acceleration.Text, out double acceleration) && double.TryParse(Price.Text, out double price))
             {
-                adminController.updateCar(thisModel.Text, Model.Text, Brand.Text, Image.Text, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, false, null);
+
+                adminController.updateCar(thisModel.Text, Model.Text, Brand.Text, Image.Text, LittleImage.Text, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, false, null);
 
                 MessageBox.Show("Auto erfolgreich upgedatet");
                 Application.Current.Windows[2].Close();

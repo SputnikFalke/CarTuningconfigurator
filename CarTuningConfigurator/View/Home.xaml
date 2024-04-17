@@ -167,7 +167,6 @@
                     
 
                 </Grid>
-
                 <Grid Grid.Column="1" Grid.Row="1" Background="Transparent" Margin="0,0,25,0" Panel.ZIndex="0" Name="UpgradesPanel" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
