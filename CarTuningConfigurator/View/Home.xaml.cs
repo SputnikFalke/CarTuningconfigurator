@@ -24,17 +24,35 @@ namespace CarTuningConfigurator.View
     /// </summary>
     public partial class Home : Window
     {
+
+        public int horsePowerChangeTotal;
+        public int brakePowerChangeTotal;
+        public int weightChangeTotal;
+        public int tractionChangeTotal;
+        public int highspeedChangeTotal;
+        public int accelerationChangeTotal;
+        public int priceChangeTotal;
+
+        TunningPart result = null;
+        TunningPart brakesResult = null;
+        TunningPart engineResult = null;
+        TunningPart TurboResult = null;
+        TunningPart WingResult = null;
+        TunningPart TiresResult = null;
+
         HomePageController controller = new HomePageController();
         Car currentCar;
+        string currentUpgradePanel;
         public Home()
         {
             InitializeComponent();
-            currentCar = new Car();    
-            
+            currentCar = new Car();
+
             //
             // This Part renders Cars into the StandartCars View
             List<Car> cars = controller.cars;
             List<TunningPart> tunningParts = controller.tunningParts;
+
 
             foreach (Car car in cars)
             {
@@ -51,8 +69,7 @@ namespace CarTuningConfigurator.View
                     btn.Width = 150;
                     btn.Margin = new Thickness(10);
                     btn.Click += (s, e) =>
-                    {
-                        currentCar = car;
+                    { 
 
                         int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
                         int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
@@ -73,7 +90,31 @@ namespace CarTuningConfigurator.View
 
                         var hpBinding = new Binding("Horsepower");
                         hpBinding.Source = car;
-                        BrakePowerLabel.SetBinding(Label.ContentProperty, hpBinding);
+                        HorsePowerLabel.SetBinding(Label.ContentProperty, hpBinding);
+
+                        var bpBinding = new Binding("Breakpower");
+                        bpBinding.Source = car;
+                        BrakePowerLabel.SetBinding(Label.ContentProperty, bpBinding);
+
+                        var weightBinding = new Binding("Weight");
+                        weightBinding.Source = car;
+                        WightLabel.SetBinding(Label.ContentProperty, weightBinding);
+
+                        var tractionBinding = new Binding("Traction");
+                        tractionBinding.Source = car;
+                        TractionLabel.SetBinding(Label.ContentProperty, tractionBinding);
+
+                        var highspeedBinding = new Binding("Highspeed");
+                        highspeedBinding.Source = car;
+                        HighspeedLabel.SetBinding(Label.ContentProperty, highspeedBinding);
+
+                        var accelerationBinding = new Binding("Acceleration");
+                        accelerationBinding.Source = car;
+                        AccelerationLabel.SetBinding(Label.ContentProperty, accelerationBinding);
+
+                        var priceBinding = new Binding("Price");
+                        priceBinding.Source = car;
+                        PriceLabel.SetBinding(Label.ContentProperty, priceBinding);
 
                     };
 
@@ -180,6 +221,7 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(UpgradesPanel, zIndex2);
             Panel.SetZIndex(UpgradeBrake, zIndex1);
 
+            currentUpgradePanel = "Brakes";
             List<TunningPart> brakes = GetTunningParts("Breaks");
             LoadPanel(brakes);
 
@@ -194,6 +236,7 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(UpgradesPanel, zIndex2);
             Panel.SetZIndex(UpgradeBrake, zIndex1);
 
+            currentUpgradePanel = "Engine";
             List<TunningPart> engines = GetTunningParts("Engine");
             LoadPanel(engines);
 
@@ -208,6 +251,7 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(UpgradesPanel, zIndex2);
             Panel.SetZIndex(UpgradeBrake, zIndex1);
 
+            currentUpgradePanel = "Turbo";
             List<TunningPart> turbos = GetTunningParts("Turbo");
             LoadPanel(turbos);
 
@@ -222,6 +266,7 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(UpgradesPanel, zIndex2);
             Panel.SetZIndex(UpgradeBrake, zIndex1);
 
+            currentUpgradePanel = "Tires";
             List<TunningPart> tires = GetTunningParts("Tires");
             LoadPanel(tires);
 
@@ -236,6 +281,7 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(UpgradesPanel, zIndex2);
             Panel.SetZIndex(UpgradeBrake, zIndex1);
 
+            currentUpgradePanel = "Wing";
             List<TunningPart> wings = GetTunningParts("Wing");
             LoadPanel(wings);
 
@@ -249,8 +295,6 @@ namespace CarTuningConfigurator.View
             int zIndex2 = Panel.GetZIndex(UpgradeBrake);
             Panel.SetZIndex(UpgradeBrake, zIndex2);
             Panel.SetZIndex(UpgradesPanel, zIndex1);
-
-            RadioButtonHallo.IsChecked = true;
 
         }
 
@@ -279,19 +323,95 @@ namespace CarTuningConfigurator.View
         private void LoadPanel(List<TunningPart> parts)
         {
             warppanelForTuningStages.Children.Clear();
+            var value = BrakePowerLabel.Content;
+            RadioButton rdbtn;
+            
 
             foreach (TunningPart part in parts)
             {
-                var rdbtn = new RadioButton();
-
+                rdbtn = new RadioButton();
+                
                 var breaksBinding = new Binding();
                 breaksBinding.Source = part;
                 rdbtn.Content = part.Name;
-
+                result = checkSelectedPanel(currentUpgradePanel);
+                if (result != null && rdbtn.Content == result.Name) 
+                {
+                    rdbtn.IsChecked = true;
+                }
+                else
+                {
+                    rdbtn.IsChecked = false;
+                } 
+                rdbtn.Checked += (sender, e) =>
+                {
+                    horsePowerChangeTotal = part.ChangeOfHorsePower + horsePowerChangeTotal;
+                    BrakePowerLabel.Content = value + "+" + horsePowerChangeTotal;
+                    result = part;
+                    setRightResult(result);
+                };
+                rdbtn.Unchecked += (sender, e) =>
+                {
+                    BrakePowerLabel.Content = value;
+                };
+                
+                
                 warppanelForTuningStages.Children.Add(rdbtn);
             }
         }
 
+        private void setRightResult(TunningPart result)
+        {
+            switch(result.Category) 
+            {
+                case "Breaks":
+                    brakesResult = result;
+                    break;
+                case "Wing":
+                    WingResult = result;
+                    break;
+                case "Engine":
+                    engineResult = result;
+                    break;
+                case "Turbo":
+                    TurboResult = result;
+                    break;
+                case "Tires":
+                    TiresResult = result;
+                    break;
+                default:
+                    MessageBox.Show("funktionagled doch nd");
+                    break;
+            }
+        }
+
+        private TunningPart checkSelectedPanel(string currentUpgradePanel)
+        {
+
+            switch (currentUpgradePanel)
+            {
+                case "Brakes":
+                    result = brakesResult;
+                    break;
+                case "Wing":
+                    result = WingResult;
+                    break;
+                case "Engine":
+                    result = engineResult;
+                    break;
+                case "Turbo":
+                    result = TurboResult;
+                    break;
+                case "Tires":
+                    result = TiresResult;
+                    break;
+                default: 
+                    result = null; 
+                    break;
+            }
+
+            return result;
+        }
 
         private void SaveCar(object sender, RoutedEventArgs e)
         {
