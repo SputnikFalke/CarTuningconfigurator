@@ -462,7 +462,32 @@ namespace CarTuningConfigurator.View
                 rdbtn.Checked += (sender, e) =>
                 {
                     result = part;
+                    if (result.Category == "Wing" && WingResult != null)
+                    {
+                        tunnings.Remove(WingResult);
+                    }
+
+                    if (result.Category == "Engine" && engineResult != null)
+                    {
+                        tunnings.Remove(engineResult);
+                    }
+                    if (result.Category == "Breaks" && brakesResult != null)
+                    {
+                        tunnings.Remove(brakesResult);
+                    }
+                    if (result.Category == "Turbo" && TurboResult != null)
+                    {
+                        tunnings.Remove(TurboResult);
+                    }
+                    if (result.Category == "Tires" && TiresResult != null)
+                    {
+                        tunnings.Remove(TiresResult);
+                    }
+
+
                     setRightResult(result);
+
+
 
                     tunnings.Add(result);
                     controller.updateTunningPartfromCar(currentCar, tunnings);
