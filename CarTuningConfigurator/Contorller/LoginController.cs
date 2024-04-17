@@ -69,20 +69,20 @@ namespace CarTuningConfigurator.Contorller
             }
             return resultat;
         }
-        public string checkUser(string username, string password) 
+        public User checkUser(string username, string password) 
         {
             userModel.users = dBConnect.GetAllUsers();
-            string result = null;
+            User result = null;
             string salt = "";
             string hashedPassword = HashPassword(salt, password);
 
             if(username == "Elia" &&  password == "Kuster")
             {
-                result = "admin";
+                result = new User(username, hashedPassword);
             }
             else if(userModel.checkUser(username, hashedPassword) !=null) 
             {
-                result = "user";
+                result = new User(username, hashedPassword);
             }
             return result;
         }

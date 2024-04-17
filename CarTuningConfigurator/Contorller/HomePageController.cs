@@ -1,5 +1,6 @@
 ﻿using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
+using CarTuningConfigurator.View;
 using MongoDB.Bson.Serialization.Serializers;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace CarTuningConfigurator.Contorller
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
-            UserModel = new UserModel();
         }
 
         public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
@@ -64,15 +64,22 @@ namespace CarTuningConfigurator.Contorller
 
         public void saveCar(User user, Car car)
         {
-            if(car.Modified == true)
+            DBConnect.InsertCarToDb(car);
+            user.cars.Add(car);
+            DBConnect.UpdateCarsFromUser(user, user.cars);         
+        }
+
+        public void saveTunnedCar(User user, Car car)
+        {
+            foreach(var car2 in user.cars)
             {
-                DBConnect.InsertCarToDb(car);
-                user.cars.Add(car);
-                DBConnect.UpdateCarsFromUser(user, user.cars);
-            }
-            else
-            {
-                MessageBox.Show("Das Auto muss modifiziert sein");
+                if(car2.Model == car.Model)
+                {
+                    user.cars.Remove(car2);
+                    user.cars.Add(car);
+
+                    DBConnect.UpdateCarsFromUser(user, user.cars);
+                }
             }
         }
 

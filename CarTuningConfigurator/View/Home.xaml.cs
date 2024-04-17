@@ -25,11 +25,15 @@ namespace CarTuningConfigurator.View
     public partial class Home : Window
     {
         HomePageController controller = new HomePageController();
+        UserModel UserModel = new UserModel();
         Car currentCar;
-        public Home()
+        User theUser = null;
+
+        public Home(string username)
         {
             InitializeComponent();
-            currentCar = new Car();    
+            currentCar = new Car();  
+            theUser = UserModel.searchUser(username);
             
             //
             // This Part renders Cars into the StandartCars View
@@ -88,32 +92,38 @@ namespace CarTuningConfigurator.View
             // End of Render
             //
             // This Part renders Cars into the TunedCars View
-            foreach (Car car in cars)
+            if(theUser != null)
             {
-                if (car.Modified == true)
+                foreach (Car car in theUser.cars)
                 {
-                    var binding = new Binding("Image");
-                    binding.Source = car;
-                    var img = new Image();
-
-                    var btn = new Button();
-                    btn.Content = img;
-                    btn.Height = 150;
-                    btn.Width = 150;
-                    btn.Margin = new Thickness(10);
-                    btn.Click += (s, e) =>
+                    if (car.Modified == true)
                     {
-                        MessageBox.Show("Funktioniert so wiit");
-                    };
+                        var binding = new Binding("Image");
+                        binding.Source = car;
+                        var img = new Image();
 
-                    img.SetBinding(Image.SourceProperty, binding);
-                    img.Stretch = Stretch.UniformToFill;
-                    HorizontalAlignment = HorizontalAlignment.Center;
-                    VerticalAlignment = VerticalAlignment.Center;
+                        var btn = new Button();
+                        btn.Content = img;
+                        btn.Height = 150;
+                        btn.Width = 150;
+                        btn.Margin = new Thickness(10);
+                        btn.Click += (s, e) =>
+                        {
+                            MessageBox.Show("Funktioniert so wiit");
+                        };
 
-                    WrapPanelForStandartCarsImages.Children.Add(btn);
+                        img.SetBinding(Image.SourceProperty, binding);
+                        img.Stretch = Stretch.UniformToFill;
+                        HorizontalAlignment = HorizontalAlignment.Center;
+                        VerticalAlignment = VerticalAlignment.Center;
+
+                        WrapPanelForStandartCarsImages.Children.Add(btn);
+                    }
                 }
             }
+
+
+            
             // End of Render
             //
             // This renders Mods Into the mod list
@@ -293,12 +303,17 @@ namespace CarTuningConfigurator.View
         }
 
 
-        private void SaveCar(object sender, RoutedEventArgs e)
+        private void Save_Car(object sender, RoutedEventArgs e)
         {
-            Car car = new Car();
-            User user = new User();
-            controller.saveCar(user, car);
-            //Achtung nur Provisorisch, der ausgewählte Car muss übergeben werden.
+            currentCar.Modified = true;
+            controller.saveCar(theUser, currentCar);
         }
+
+        private void Save_Tunned_Car(object sender, RoutedEventArgs e)
+        {
+            controller.saveTunnedCar(theUser, currentCar);
+        }
+
     }
+
 }
