@@ -13,6 +13,7 @@ namespace CarTuningConfigurator.Contorller
     class HomePageController
     {
         public List<Car> cars;
+        public List<TunningPart> tunningParts;
         private DBConnect DBConnect;
         private CarModel CarModel;
 
@@ -20,6 +21,7 @@ namespace CarTuningConfigurator.Contorller
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
+            tunningParts = DBConnect.GetAllTunningPart();
         }
 
         public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
