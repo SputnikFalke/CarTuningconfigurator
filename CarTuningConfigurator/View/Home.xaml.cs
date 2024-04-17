@@ -362,7 +362,13 @@ namespace CarTuningConfigurator.View
 
                     if (engineResult != null)
                     {
-
+                        foreach (var tunning in tunnings)
+                        {
+                            if(tunning.Name == engineResult.Name)
+                            {
+                                tunnings.Remove(tunning);
+                            }
+                        }
                         tunnings.Add(engineResult);
                     }
 
@@ -399,7 +405,6 @@ namespace CarTuningConfigurator.View
                         }
 
 
-                        //horsePowerChangeTotal = part.ChangeOfHorsePower + horsePowerChangeTotal;
                         HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal;
                         BrakePowerLabel.Content = currentCar.Brakeforce + " + " + brakePowerChangeTotal;
                         TractionLabel.Content = currentCar.Traction + " + " + tractionChangeTotal;
