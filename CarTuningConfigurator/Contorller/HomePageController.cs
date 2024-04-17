@@ -23,6 +23,7 @@ namespace CarTuningConfigurator.Contorller
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
+            tunningParts = DBConnect.GetAllTunningPart();
         }
 
         public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
@@ -38,7 +39,7 @@ namespace CarTuningConfigurator.Contorller
             CarModel.updateTunningPartsFromCar(car.Model, tunningParts);
 
             string img = car.Image.ToString();
-            string liImg = car.LittleImage.ToString();
+            string lilImg = car.LittleImage.ToString();
 
             foreach(var tunningPart in tunningParts)
             {
@@ -58,7 +59,7 @@ namespace CarTuningConfigurator.Contorller
             {
                 traction = 10;
             }
-            Car car1 = new Car(car.Model, car.Brand, img, liImg, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, true, tunningParts);
+            Car car1 = new Car(car.Model, car.Brand, img, lilImg, horsepower, brakeforce, traction, weight, highspeed, acceleration, price, true, tunningParts);
             return car1;
         }
 
