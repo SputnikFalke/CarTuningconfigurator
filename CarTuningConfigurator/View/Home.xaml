@@ -208,7 +208,7 @@
 
 
                 <DockPanel Grid.Column="1" Grid.Row="3">
-                    <Button Margin="5" Width="110" Click="ToSelectionOfStandartCars">BACK</Button>
+                    <Button Margin="5" Width="110" Click="ToSelectionOfCars">BACK</Button>
                     <Button Margin="5" Width="110" Click="Save_Car" Name="saveCarBtn" >SAVE</Button>
                 </DockPanel>
             </Grid>

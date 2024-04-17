@@ -46,6 +46,7 @@ namespace CarTuningConfigurator.View
         Car currentCar;
         User theUser = null;
         List<TunningPart> tunnings = new List<TunningPart>();
+        List<TunningPart> currentTuningPartsOfCurrentModdedCar = new List<TunningPart>();
         string currentUpgradePanel;
         string currentPanel;
         
@@ -155,6 +156,10 @@ namespace CarTuningConfigurator.View
                         img.HorizontalAlignment = HorizontalAlignment.Center;
                         img.VerticalAlignment = VerticalAlignment.Center;
 
+
+                        currentTuningPartsOfCurrentModdedCar = car.tunningParts;
+                        RenderTuningParts(currentTuningPartsOfCurrentModdedCar);
+
                         var btn = new Button();
                         btn.Content = img;
                         btn.Height = 150;
@@ -226,6 +231,26 @@ namespace CarTuningConfigurator.View
             // End of Render           
         }
 
+        private void RenderTuningParts(List<TunningPart> currentTuningPartsOfCurrentModdedCar)
+        {
+            foreach (var tuning in currentTuningPartsOfCurrentModdedCar) 
+            {
+                var category = tuning.Category;
+
+                switch (category)
+                {
+                    case "Breaks":
+                        brakesResult = tuning;
+                        break;
+                    case "Wing":
+                        WingResult = tuning;
+                        break ;
+                    default: break;
+                }
+
+            }
+        }
+
         private void ToStandartCars(object sender, RoutedEventArgs e)
         {
             int zIndex1 = Panel.GetZIndex(HomePanel);
@@ -274,7 +299,7 @@ namespace CarTuningConfigurator.View
             Panel.SetZIndex(HomePanel, zIndex1);
         }
 
-        private void ToSelectionOfStandartCars(object sender, RoutedEventArgs e)
+        private void ToSelectionOfCars(object sender, RoutedEventArgs e)
         {
 
             int zIndex1 = Panel.GetZIndex(DetailviewOfCar);
@@ -286,13 +311,19 @@ namespace CarTuningConfigurator.View
             {
                 Panel.SetZIndex(DetailviewOfCar, zIndex2);
                 Panel.SetZIndex(StandartCarsPanel, zIndex1);
+
+                result = null;
+                brakesResult = null;
+                engineResult = null;
+                TurboResult = null;
+                WingResult = null;
+                TiresResult = null;
+
             }
             else if (currentPanel == "TunedCars")
             {
                 Panel.SetZIndex(DetailviewOfCar, zIndex2);
                 Panel.SetZIndex(TunedCarsPanel, zIndex1);
-
-                saveCarBtn.Content = "hallo";
 
             }
         }
