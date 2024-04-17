@@ -433,38 +433,15 @@ namespace CarTuningConfigurator.View
                     result = part;
                     setRightResult(result);
 
-                    if (engineResult != null)
-                    {
-                        foreach (var tunning in tunnings)
-                        {
-                            if(tunning.Name == engineResult.Name)
-                            {
-                                tunnings.Remove(tunning);
-                            }
-                        }
-                        tunnings.Add(engineResult);
-                    }
-
-                    if (WingResult != null)
-                    {
-                        tunnings.Add(WingResult);
-                    }
-                    if (TiresResult != null)
-                    {
-                        tunnings.Add(TiresResult);
-                    }
-                    if (brakesResult != null)
-                    {
-                        tunnings.Add(brakesResult);
-                    }
-                    if (TurboResult != null)
-                    {
-                        tunnings.Add(TurboResult);
-                    }
-                    
-                    if(tunnings.Count > 0)
-                    {
-                        controller.updateTunningPartfromCar(currentCar, tunnings);
+                    tunnings.Add(result);
+                    controller.updateTunningPartfromCar(currentCar, tunnings);
+                    horsePowerChangeTotal = 0;
+                    brakePowerChangeTotal = 0;
+                    tractionChangeTotal = 0;
+                    weightChangeTotal = 0;
+                    highspeedChangeTotal = 0;
+                    accelerationChangeTotal = 0;
+                    priceChangeTotal = 0;
 
                         foreach (var part in tunnings)
                         {
@@ -485,7 +462,6 @@ namespace CarTuningConfigurator.View
                         AccelerationLabel.Content = currentCar.Acceleration + " + " + accelerationChangeTotal;
                         HighspeedLabel.Content = currentCar.Highspeed + " + " + highspeedChangeTotal;
                         PriceLabel.Content = currentCar.Price + " + " + priceChangeTotal;
-                    }
                     
 
                 };
