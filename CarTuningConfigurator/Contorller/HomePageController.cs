@@ -22,7 +22,7 @@ namespace CarTuningConfigurator.Contorller
         {
             DBConnect = new DBConnect();
             cars = DBConnect.GetAllCars();
-            tunningParts = DBConnect.GetAllTunningPart();
+            UserModel = new UserModel();
         }
 
         public Car updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)

@@ -15,6 +15,7 @@ namespace CarTuningConfigurator.Model
         public string Username { get; set; }
         public string Password { get; set; }
         public List<Car> cars { get; set; } = new List<Car>();
+        public User() { }
         
         public User(string name, string lastname, List<Car> cars)
         {
