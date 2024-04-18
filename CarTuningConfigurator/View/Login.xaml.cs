@@ -54,8 +54,9 @@ namespace CarTuningConfigurator.View
                 {
                     home = new Home(result.Username);
                     MessageBox.Show("Anmeldung erfolgreich");
-                    home.Show();
                     this.Close();
+                    home.Show();
+                    
                 }
             }
 

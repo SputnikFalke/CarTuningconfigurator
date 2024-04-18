@@ -599,14 +599,13 @@ namespace CarTuningConfigurator.View
 
                     if (currentPanel == "StandartCars")
                     {
-
-                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal + " = " + horsePowerChangeTotal + currentCar.Horsepower;
-                        BrakePowerLabel.Content = currentCar.Brakeforce + " + " + brakePowerChangeTotal;
-                        TractionLabel.Content = currentCar.Traction + " + " + tractionChangeTotal;
-                        WightLabel.Content = currentCar.Weight + " + " + weightChangeTotal;
-                        AccelerationLabel.Content = currentCar.Acceleration + " + " + accelerationChangeTotal;
-                        HighspeedLabel.Content = currentCar.Highspeed + " + " + highspeedChangeTotal;
-                        PriceLabel.Content = currentCar.Price + " + " + priceChangeTotal;
+                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal + " = " + (currentCar.Horsepower + horsePowerChangeTotal);
+                        BrakePowerLabel.Content = currentCar.Brakeforce + " + " + brakePowerChangeTotal + " = " + (currentCar.Brakeforce + brakePowerChangeTotal);
+                        TractionLabel.Content = currentCar.Traction + " + " + tractionChangeTotal + " = " + (currentCar.Traction + tractionChangeTotal); 
+                        WightLabel.Content = currentCar.Weight + " + " + weightChangeTotal + " = " + (currentCar.Weight + weightChangeTotal); 
+                        AccelerationLabel.Content = currentCar.Acceleration + " + " + accelerationChangeTotal + " = " + (currentCar.Acceleration + accelerationChangeTotal); 
+                        HighspeedLabel.Content = currentCar.Highspeed + " + " + highspeedChangeTotal + " = " + (currentCar.Highspeed + highspeedChangeTotal);
+                        PriceLabel.Content = currentCar.Price + " + " + priceChangeTotal + " = " + (currentCar.Price + priceChangeTotal);
                     } else if (currentPanel == "TunedCars") 
                     {
                         HorsePowerLabel.Content = currentCar.Horsepower + horsePowerChangeTotal;

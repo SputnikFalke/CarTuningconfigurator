@@ -119,11 +119,10 @@
                     <ScrollViewer.Background>
                         <SolidColorBrush Color="LightGray" Opacity="0.5"/>
                     </ScrollViewer.Background>
-                        
+
                     <DockPanel>
                         <WrapPanel Name="WrapPanelForTunedCarsImages" Margin="5"/>
                     </DockPanel>
-                        
                 </ScrollViewer>
                 
             </Grid>
