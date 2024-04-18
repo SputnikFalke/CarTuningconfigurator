@@ -505,7 +505,7 @@ namespace CarTuningConfigurator.View
                     priceChangeTotal = 0;
 
                         foreach (var part in tunnings)
-                        {
+                        {      
                             horsePowerChangeTotal = horsePowerChangeTotal + part.ChangeOfHorsePower;
                             brakePowerChangeTotal = brakePowerChangeTotal + part.ChangeOfBrakeForce;
                             tractionChangeTotal = tractionChangeTotal + part.ChangeOfTraction;
@@ -516,7 +516,7 @@ namespace CarTuningConfigurator.View
                         }
 
 
-                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal;
+                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal; 
                         BrakePowerLabel.Content = currentCar.Brakeforce + " + " + brakePowerChangeTotal;
                         TractionLabel.Content = currentCar.Traction + " + " + tractionChangeTotal;
                         WightLabel.Content = currentCar.Weight + " + " + weightChangeTotal;

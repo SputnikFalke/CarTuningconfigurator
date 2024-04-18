@@ -32,8 +32,22 @@ namespace CarTuningConfigurator.Model
         {
             Model = model;
             Brand = brand;
-            Image = new BitmapImage(new Uri(image));
-            LittleImage = new BitmapImage(new Uri(littleImage));
+            if(image == null)
+            {
+                Image = null;
+            }
+            else
+            {
+                Image = new BitmapImage(new Uri(image));
+            }
+            if(littleImage == null)
+            {
+                LittleImage = null;
+            }
+            else
+            {
+                LittleImage = new BitmapImage(new Uri(littleImage));
+            }
             Horsepower = horsepower;
             Brakeforce = brakeforce;
             Traction = traction;

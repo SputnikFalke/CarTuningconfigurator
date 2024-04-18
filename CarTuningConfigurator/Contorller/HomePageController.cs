@@ -36,7 +36,8 @@ namespace CarTuningConfigurator.Contorller
 
         public void saveTunnedCar(User user, Car car)
         {
-            foreach(var car2 in user.cars)
+            var carsCopy = new List<Car>(user.cars);
+            foreach(var car2 in carsCopy)
             {
                 if(car2.Model == car.Model)
                 {
