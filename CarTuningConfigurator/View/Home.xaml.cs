@@ -40,6 +40,11 @@ namespace CarTuningConfigurator.View
         TunningPart TurboResult = null;
         TunningPart WingResult = null;
         TunningPart TiresResult = null;
+        TunningPart weightResult = null;
+        TunningPart transmissionResult = null;
+        TunningPart bodyResult = null;
+        TunningPart chipResult = null;
+
 
         HomePageController controller = new HomePageController();
         UserModel UserModel = new UserModel();
@@ -57,8 +62,7 @@ namespace CarTuningConfigurator.View
             InitializeComponent();
             currentCar = new Car();  
             theUser = UserModel.searchUser(username);
-
-
+            
             //
             // This Part renders Cars into the StandartCars View
             cars = controller.GetAllCars();
@@ -86,6 +90,7 @@ namespace CarTuningConfigurator.View
                     btn.Click += (s, e) =>
                     { 
                         currentCar = car;
+                        
                         int zIndex1 = Panel.GetZIndex(StandartCarsPanel);
                         int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
                         Panel.SetZIndex(StandartCarsPanel, zIndex2);
@@ -152,7 +157,7 @@ namespace CarTuningConfigurator.View
                 {
                     if (car.Modified == true)
                     {
-                        var binding = new Binding("Image");
+                        var binding = new Binding("LittleImage");
                         binding.Source = car;
                         var img = new Image();
                         img.HorizontalAlignment = HorizontalAlignment.Center;
@@ -171,6 +176,7 @@ namespace CarTuningConfigurator.View
                         btn.Margin = new Thickness(10);
                         btn.Click += (s, e) =>
                         {
+                            currentCar = car;
                             RenderTuningParts(currentTuningPartsOfCurrentModdedCar);
 
                             int zIndex1 = Panel.GetZIndex(TunedCarsPanel);
@@ -321,6 +327,10 @@ namespace CarTuningConfigurator.View
                 TurboResult = null;
                 WingResult = null;
                 TiresResult = null;
+                weightResult = null;
+                transmissionResult = null;
+                bodyResult = null;
+                chipResult = null;
 
             }
             else if (currentPanel == "TunedCars")
@@ -406,6 +416,66 @@ namespace CarTuningConfigurator.View
 
         }
 
+        private void UpgradeTransmission(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            currentUpgradePanel = "Transmission";
+            List<TunningPart> wings = GetTunningParts("Transmission");
+            LoadPanel(wings);
+
+        }
+
+        private void UpgradeChip(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            currentUpgradePanel = "Chiptuning";
+            List<TunningPart> wings = GetTunningParts("Chiptuning");
+            LoadPanel(wings);
+
+        }
+
+        private void UpgradeBody(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            currentUpgradePanel = "Bodywork";
+            List<TunningPart> wings = GetTunningParts("Bodywork");
+            LoadPanel(wings);
+
+        }
+
+        private void WeightReduction(object sender, RoutedEventArgs e)
+        {
+            UpgradeBrake.Visibility = Visibility.Collapsed;
+            UpgradesPanel.Visibility = Visibility.Visible;
+            int zIndex1 = Panel.GetZIndex(UpgradeBrake);
+            int zIndex2 = Panel.GetZIndex(UpgradesPanel);
+            Panel.SetZIndex(UpgradesPanel, zIndex2);
+            Panel.SetZIndex(UpgradeBrake, zIndex1);
+
+            currentUpgradePanel = "WeightReduction";
+            List<TunningPart> wings = GetTunningParts("WeightReduction");
+            LoadPanel(wings);
+
+        }
+
         private void GoBackToUpgradeSelection(object sender, RoutedEventArgs e)
         {
             UpgradesPanel.Visibility = Visibility.Collapsed;
@@ -455,8 +525,7 @@ namespace CarTuningConfigurator.View
                 breaksBinding.Source = part;
                 rdbtn.Content = part.Name;
                 result = checkSelectedPanel(currentUpgradePanel);
-                testRdbtn.Content = result.Name;
-                if (result != null && rdbtn.Content.Equals(testRdbtn.Content)) 
+                if (result != null && rdbtn.Content.Equals(result.Name)) 
                 {
                     rdbtn.IsChecked = true;
                 }
@@ -471,7 +540,6 @@ namespace CarTuningConfigurator.View
                     {
                         tunnings.Remove(WingResult);
                     }
-
                     if (result.Category == "Engine" && engineResult != null)
                     {
                         tunnings.Remove(engineResult);
@@ -488,11 +556,25 @@ namespace CarTuningConfigurator.View
                     {
                         tunnings.Remove(TiresResult);
                     }
+                    if (result.Category == "Transmission"  && transmissionResult != null) 
+                    {
+                        tunnings.Remove(transmissionResult);
+                    }
+                    if (result.Category == "Chiptuning" && chipResult != null)
+                    {
+                        tunnings.Remove(chipResult);
+                    }
+                    if (result.Category == "Bodywork" && bodyResult != null)
+                    {
+                        tunnings.Remove(bodyResult);
+                    }
+                    if (result.Category == "WeightReduction" && weightResult != null)
+                    {
+                        tunnings.Remove(weightResult);
+                    }
 
 
                     setRightResult(result);
-
-
 
                     tunnings.Add(result);
                     controller.updateTunningPartfromCar(currentCar, tunnings);
@@ -515,14 +597,27 @@ namespace CarTuningConfigurator.View
                             priceChangeTotal = priceChangeTotal + part.ChangeOfPrice;
                         }
 
+                    if (currentPanel == "StandartCars")
+                    {
 
-                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal;
+                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal + " = " + horsePowerChangeTotal + currentCar.Horsepower;
                         BrakePowerLabel.Content = currentCar.Brakeforce + " + " + brakePowerChangeTotal;
                         TractionLabel.Content = currentCar.Traction + " + " + tractionChangeTotal;
                         WightLabel.Content = currentCar.Weight + " + " + weightChangeTotal;
                         AccelerationLabel.Content = currentCar.Acceleration + " + " + accelerationChangeTotal;
                         HighspeedLabel.Content = currentCar.Highspeed + " + " + highspeedChangeTotal;
                         PriceLabel.Content = currentCar.Price + " + " + priceChangeTotal;
+                    } else if (currentPanel == "TunedCars") 
+                    {
+                        HorsePowerLabel.Content = currentCar.Horsepower + horsePowerChangeTotal;
+                        BrakePowerLabel.Content = currentCar.Brakeforce  + brakePowerChangeTotal;
+                        TractionLabel.Content = currentCar.Traction  + tractionChangeTotal;
+                        WightLabel.Content = currentCar.Weight  + weightChangeTotal;
+                        AccelerationLabel.Content = currentCar.Acceleration  + accelerationChangeTotal;
+                        HighspeedLabel.Content = currentCar.Highspeed  + highspeedChangeTotal;
+                        PriceLabel.Content = currentCar.Price  + priceChangeTotal;
+                    }
+
                     
 
                 };
@@ -555,6 +650,18 @@ namespace CarTuningConfigurator.View
                 case "Tires":
                     TiresResult = result;
                     break;
+                case "Transmission":
+                    transmissionResult = result;
+                    break;
+                case "WeightReuction":
+                    weightResult = result;
+                    break;
+                case "Bodywork":
+                    bodyResult = result;
+                    break;
+                case "chiptuning":
+                    chipResult = result;
+                    break;
                 default:
                     MessageBox.Show("funktionagled doch nd");
                     break;
@@ -581,8 +688,21 @@ namespace CarTuningConfigurator.View
                 case "Tires":
                     result = TiresResult;
                     break;
-                default: 
-                    result = null; 
+                case "Transmission":
+                    result = transmissionResult;
+                    break;
+                case "WeightReuction":
+                    result = weightResult ;
+                    break;
+                case "Bodywork":
+                     result = bodyResult;
+                    break;
+                case "chiptuning":
+                     result = chipResult;
+                    break;
+                default:
+                    MessageBox.Show("Irgendeine Kategorie ist nicht richt eingeschrieben werden");
+                    return null;
                     break;
             }
 
@@ -596,13 +716,22 @@ namespace CarTuningConfigurator.View
                 if (currentCar.Modified == false)
                 {
                     currentCar.Modified = true;
+
                     controller.saveCar(theUser, currentCar);
                     MessageBox.Show("Auto wurde gesaved");
                 }
                 else
                 {
+                    foreach (var user in controller.GetAllUsers()) 
+                    { 
+                        if (user.Username == theUser.Username) 
+                        {
+                            theUser = user;
+                        }
+                    }
+
                     controller.saveTunnedCar(theUser, currentCar);
-                    MessageBox.Show("Auto wurde upgedated");
+                    MessageBox.Show("Auto wurde geupdated");
                 }
             }
             else
