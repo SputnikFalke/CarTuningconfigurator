@@ -36,14 +36,14 @@ namespace CarTuningConfigurator.Contorller
 
         public void saveTunnedCar(User user, Car car)
         {
-            var carsCopy = new List<Car>(user.cars); // Kopie der Liste erstellen
+            var carsCopy = new List<Car>(user.cars); 
 
             foreach (var car2 in carsCopy)
             {
                 if (car2.Model == car.Model)
                 {
-                    user.cars.Remove(car2); // Element aus der Originalliste entfernen
-                    user.cars.Add(car); // Neues Element zur Originalliste hinzufügen
+                    user.cars.Remove(car2);
+                    user.cars.Add(car); 
 
                     DBConnect.UpdateCarsFromUser(user, user.cars);
                 }
