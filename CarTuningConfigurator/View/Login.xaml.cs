@@ -1,6 +1,7 @@
 ﻿using CarTuningConfigurator.Contorller;
 using CarTuningConfigurator.DatabaseConnection;
 using CarTuningConfigurator.Model;
+using CarTuningConfigurator.TestFile;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,6 @@ namespace CarTuningConfigurator.View
     /// </summary>
     public partial class Login : Window
     {
-
         LoginController controller = new LoginController();
         Home home;
         Register register;
@@ -33,16 +33,42 @@ namespace CarTuningConfigurator.View
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (register == null)
+            {
+                register = new Register();
+            }
+
+            register.Show();
+            this.Close();
+        }
+
+        private void Log_In(object sender, RoutedEventArgs e)
+        {
             User result = controller.checkUser(Username1.Text, Password.Password);
             if (result == null)
             {
-                MessageBox.Show("Anmeldung falsch");
+                if (Username1.Text == "TestTest")
+                {
+                    TestFile.Test test = new TestFile.Test();
+                    test.Message();
+                }
+                else
+                {
+                    MessageBox.Show("Anmeldung falsch");
+                }
+
             }
             else
             {
+                if (Username1.Text == "TestTest")
+                {
+                    TestFile.Test test = new TestFile.Test();
+                }
                 if (result.Username == "Elia")
                 {
                     admin = new Admin();
@@ -58,20 +84,6 @@ namespace CarTuningConfigurator.View
                     this.Close();
                 }
             }
-
-        }
-
-
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (register == null)
-            {
-                register = new Register();
-            }
-
-            register.Show();
-            this.Close();
         }
 
     }
