@@ -587,7 +587,7 @@ namespace CarTuningConfigurator.View
                     priceChangeTotal = 0;
 
                         foreach (var part in tunnings)
-                        {
+                        {      
                             horsePowerChangeTotal = horsePowerChangeTotal + part.ChangeOfHorsePower;
                             brakePowerChangeTotal = brakePowerChangeTotal + part.ChangeOfBrakeForce;
                             tractionChangeTotal = tractionChangeTotal + part.ChangeOfTraction;
