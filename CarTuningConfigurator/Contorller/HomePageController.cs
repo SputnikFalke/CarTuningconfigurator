@@ -14,16 +14,12 @@ namespace CarTuningConfigurator.Contorller
 {
     class HomePageController
     {
-        public List<Car> cars;
-        public List<TunningPart> tunningParts;
         private DBConnect DBConnect;
         private CarModel CarModel;
 
         public HomePageController() 
         {
             DBConnect = new DBConnect();
-            cars = DBConnect.GetAllCars();
-            tunningParts = DBConnect.GetAllTunningPart();
         }
 
         public void updateTunningPartfromCar(Car car, List<TunningPart> tunningParts)
@@ -52,5 +48,14 @@ namespace CarTuningConfigurator.Contorller
             }
         }
 
+        public List<Car> GetAllCars()
+        {
+            return DBConnect.GetAllCars();
+        }
+
+        public List<TunningPart> GetAllTunningParts()
+        {
+            return DBConnect.GetAllTunningPart();
+        }
     }
 }

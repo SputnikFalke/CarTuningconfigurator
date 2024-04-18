@@ -44,6 +44,8 @@ namespace CarTuningConfigurator.View
         HomePageController controller = new HomePageController();
         UserModel UserModel = new UserModel();
         Car currentCar;
+        List<Car> cars = new List<Car>();
+        List<TunningPart> tunningParts = new List<TunningPart>();
         User theUser = null;
         List<TunningPart> tunnings = new List<TunningPart>();
         List<TunningPart> currentTuningPartsOfCurrentModdedCar = new List<TunningPart>();
@@ -59,8 +61,8 @@ namespace CarTuningConfigurator.View
 
             //
             // This Part renders Cars into the StandartCars View
-            List<Car> cars = controller.cars;
-            List<TunningPart> tunningParts = controller.tunningParts;
+            cars = controller.GetAllCars();
+            tunningParts = controller.GetAllTunningParts();
 
 
             foreach (Car car in cars)
@@ -426,7 +428,7 @@ namespace CarTuningConfigurator.View
         {
             List<TunningPart> parts = new List<TunningPart>();
 
-            foreach (var part in controller.tunningParts) 
+            foreach (var part in tunningParts) 
             {
                 if (part.Category == Category) 
                 {
@@ -589,13 +591,25 @@ namespace CarTuningConfigurator.View
 
         private void Save_Car(object sender, RoutedEventArgs e)
         {
-            currentCar.Modified = true;
-            controller.saveCar(theUser, currentCar);
-        }
+            if(currentCar.tunningParts != null)
+            {
+                if (currentCar.Modified == false)
+                {
+                    currentCar.Modified = true;
+                    controller.saveCar(theUser, currentCar);
+                    MessageBox.Show("Auto wurde gesaved");
+                }
+                else
+                {
+                    controller.saveTunnedCar(theUser, currentCar);
+                    MessageBox.Show("Auto wurde upgedated");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Das Auto muss ein Tunning Part enthalten");
+            }
 
-        private void Save_Tunned_Car()
-        {
-            controller.saveTunnedCar(theUser, currentCar);
         }
 
     }
