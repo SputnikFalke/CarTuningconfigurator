@@ -158,7 +158,7 @@ namespace CarTuningConfigurator.View
 
 
                         currentTuningPartsOfCurrentModdedCar = car.tunningParts;
-                        RenderTuningParts(currentTuningPartsOfCurrentModdedCar);
+                        
 
                         var btn = new Button();
                         btn.Content = img;
@@ -169,6 +169,7 @@ namespace CarTuningConfigurator.View
                         btn.Margin = new Thickness(10);
                         btn.Click += (s, e) =>
                         {
+                            RenderTuningParts(currentTuningPartsOfCurrentModdedCar);
 
                             int zIndex1 = Panel.GetZIndex(TunedCarsPanel);
                             int zIndex2 = Panel.GetZIndex(DetailviewOfCar);
@@ -446,12 +447,14 @@ namespace CarTuningConfigurator.View
             foreach (TunningPart part in parts)
             {
                 rdbtn = new RadioButton();
+                var testRdbtn = new RadioButton();
                 
                 var breaksBinding = new Binding();
                 breaksBinding.Source = part;
                 rdbtn.Content = part.Name;
                 result = checkSelectedPanel(currentUpgradePanel);
-                if (result != null && rdbtn.Content == result.Name) 
+                testRdbtn.Content = result.Name;
+                if (result != null && rdbtn.Content.Equals(testRdbtn.Content)) 
                 {
                     rdbtn.IsChecked = true;
                 }
