@@ -35,7 +35,6 @@ namespace CarTuningConfigurator.View
         }
 
 
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (register == null)
@@ -80,9 +79,8 @@ namespace CarTuningConfigurator.View
                 {
                     home = new Home(result.Username);
                     MessageBox.Show("Anmeldung erfolgreich");
-                    this.Close();
                     home.Show();
-                    
+                    this.Close();
                 }
             }
         }
