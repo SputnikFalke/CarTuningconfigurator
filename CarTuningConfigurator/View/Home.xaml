@@ -119,11 +119,10 @@
                     <ScrollViewer.Background>
                         <SolidColorBrush Color="LightGray" Opacity="0.5"/>
                     </ScrollViewer.Background>
-                        
+
                     <DockPanel>
                         <WrapPanel Name="WrapPanelForTunedCarsImages" Margin="5"/>
                     </DockPanel>
-                        
                 </ScrollViewer>
                 
             </Grid>
@@ -220,21 +219,23 @@
                     </DockPanel>
                 </Grid>
 
-                <TextBlock Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" Background="LightGray" Opacity="0.5" Name="StatsPanel"/>
-                <DockPanel  Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" Background="Transparent">
-                    <WrapPanel FlowDirection="LeftToRight">        
-                        <Label Name="BrandLabel" Content="Brand" FontWeight="ExtraBold" FontSize="30" Width="200"/>
-                        <Label Name="ModelLabel" Content="Model" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                        <Label Name="HorsePowerLabel" Content="HP" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                        <Label Name="BrakePowerLabel" Content="BP" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                        <Label Name="WightLabel" Content="Weight" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                        <Label Name="TractionLabel" Content="Traction" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                        <Label Name="HighspeedLabel" Content="Highspeed" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                        <Label Name="AccelerationLabel" Content="Acceleration" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                        <Label Name="PriceLabel" Content="Price" FontWeight="ExtraLight" FontSize="20" Width="200"/>
-                    </WrapPanel>
-                </DockPanel>
-
+                <TextBlock Grid.Row="1" Grid.Column="3" Grid.RowSpan="3" Background="LightGray" Opacity="0.75" Name="StatsPanel"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="3" Grid.RowSpan="3">
+                    <DockPanel  Background="Transparent" Grid.Row="1" Grid.Column="3" Grid.RowSpan="3">
+                        <WrapPanel FlowDirection="LeftToRight">
+                            <Label Name="BrandLabel" Content="Brand" FontWeight="ExtraBold" FontSize="30" Width="200"/>
+                            <Label Name="ModelLabel" Content="Model" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                            <Label Name="HorsePowerLabel" Content="HP" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                            <Label Name="BrakePowerLabel" Content="BP" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                            <Label Name="WightLabel" Content="Weight" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                            <Label Name="TractionLabel" Content="Traction" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                            <Label Name="HighspeedLabel" Content="Highspeed" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                            <Label Name="AccelerationLabel" Content="Acceleration" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                            <Label Name="PriceLabel" Content="Price" FontWeight="ExtraLight" FontSize="20" Width="200"/>
+                        </WrapPanel>
+                    </DockPanel>
+                </ScrollViewer>
+                
 
                 <DockPanel Grid.Column="1" Grid.Row="3">
                     <Button Margin="5" Width="110" Click="ToSelectionOfCars">BACK</Button>

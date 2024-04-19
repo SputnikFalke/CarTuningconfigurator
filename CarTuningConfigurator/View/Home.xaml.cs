@@ -110,31 +110,39 @@ namespace CarTuningConfigurator.View
 
                         var hpBinding = new Binding("Horsepower");
                         hpBinding.Source = car;
+                        var text = "Hallo";
                         HorsePowerLabel.SetBinding(Label.ContentProperty, hpBinding);
+                        HorsePowerLabel.Content = "Horsepower: \n" + HorsePowerLabel.Content + "HP";
 
                         var bpBinding = new Binding("Breakpower");
                         bpBinding.Source = car;
                         BrakePowerLabel.SetBinding(Label.ContentProperty, bpBinding);
+                        BrakePowerLabel.Content = "Breakpower: \n" + BrakePowerLabel.Content;
 
                         var weightBinding = new Binding("Weight");
                         weightBinding.Source = car;
-                        WightLabel.SetBinding(Label.ContentProperty, weightBinding);
+                        WightLabel.SetBinding(Label.ContentProperty,  weightBinding );
+                        WightLabel.Content = "Weight: \n" + WightLabel.Content + " Kg";
 
                         var tractionBinding = new Binding("Traction");
                         tractionBinding.Source = car;
-                        TractionLabel.SetBinding(Label.ContentProperty, tractionBinding);
+                        TractionLabel.SetBinding(Label.ContentProperty,  tractionBinding);
+                        TractionLabel.Content = "Traction: \n" + TractionLabel.Content;
 
                         var highspeedBinding = new Binding("Highspeed");
                         highspeedBinding.Source = car;
                         HighspeedLabel.SetBinding(Label.ContentProperty, highspeedBinding);
+                        HighspeedLabel.Content = "Highspeed: \n" + HighspeedLabel.Content + " KM/H";
 
                         var accelerationBinding = new Binding("Acceleration");
                         accelerationBinding.Source = car;
-                        AccelerationLabel.SetBinding(Label.ContentProperty, accelerationBinding);
+                        AccelerationLabel.SetBinding(Label.ContentProperty,  accelerationBinding);
+                        AccelerationLabel.Content = "Acceleration (0-100): \n" + AccelerationLabel.Content + "Sek";
 
                         var priceBinding = new Binding("Price");
                         priceBinding.Source = car;
                         PriceLabel.SetBinding(Label.ContentProperty, priceBinding);
+                        PriceLabel.Content = "Price: \n" + PriceLabel.Content + "CHF";
 
                         saveCarBtn.Content = "SAVE";
 
@@ -198,31 +206,31 @@ namespace CarTuningConfigurator.View
 
                             var hpBinding = new Binding("Horsepower");
                             hpBinding.Source = car;
-                            HorsePowerLabel.SetBinding(Label.ContentProperty, hpBinding);
+                            HorsePowerLabel.SetBinding(Label.ContentProperty, "HorsePower: \n" + hpBinding);
 
                             var bpBinding = new Binding("Breakpower");
                             bpBinding.Source = car;
-                            BrakePowerLabel.SetBinding(Label.ContentProperty, bpBinding);
+                            BrakePowerLabel.SetBinding(Label.ContentProperty, "Brake Power: \n" + bpBinding);
 
                             var weightBinding = new Binding("Weight");
                             weightBinding.Source = car;
-                            WightLabel.SetBinding(Label.ContentProperty, weightBinding);
+                            WightLabel.SetBinding(Label.ContentProperty, "Weight: \n" + weightBinding);
 
                             var tractionBinding = new Binding("Traction");
                             tractionBinding.Source = car;
-                            TractionLabel.SetBinding(Label.ContentProperty, tractionBinding);
+                            TractionLabel.SetBinding(Label.ContentProperty, "Traction: \n" + tractionBinding);
 
                             var highspeedBinding = new Binding("Highspeed");
                             highspeedBinding.Source = car;
-                            HighspeedLabel.SetBinding(Label.ContentProperty, highspeedBinding);
+                            HighspeedLabel.SetBinding(Label.ContentProperty, "Highspeed: \n" + highspeedBinding);
 
                             var accelerationBinding = new Binding("Acceleration");
                             accelerationBinding.Source = car;
-                            AccelerationLabel.SetBinding(Label.ContentProperty, accelerationBinding);
+                            AccelerationLabel.SetBinding(Label.ContentProperty, "Acceleration (0-100): \n" + accelerationBinding + " sek");
 
                             var priceBinding = new Binding("Price");
                             priceBinding.Source = car;
-                            PriceLabel.SetBinding(Label.ContentProperty, priceBinding);
+                            PriceLabel.SetBinding(Label.ContentProperty, "Price: \n" + priceBinding);
 
                             saveCarBtn.Content = "UPDATE";
 
@@ -599,23 +607,22 @@ namespace CarTuningConfigurator.View
 
                     if (currentPanel == "StandartCars")
                     {
-
-                        HorsePowerLabel.Content = currentCar.Horsepower + " + " + horsePowerChangeTotal + " = " + horsePowerChangeTotal + currentCar.Horsepower;
-                        BrakePowerLabel.Content = currentCar.Brakeforce + " + " + brakePowerChangeTotal;
-                        TractionLabel.Content = currentCar.Traction + " + " + tractionChangeTotal;
-                        WightLabel.Content = currentCar.Weight + " + " + weightChangeTotal;
-                        AccelerationLabel.Content = currentCar.Acceleration + " + " + accelerationChangeTotal;
-                        HighspeedLabel.Content = currentCar.Highspeed + " + " + highspeedChangeTotal;
-                        PriceLabel.Content = currentCar.Price + " + " + priceChangeTotal;
+                        HorsePowerLabel.Content = "HorsePower: \n" + currentCar.Horsepower + " + " + horsePowerChangeTotal + " = " + (currentCar.Horsepower + horsePowerChangeTotal);
+                        BrakePowerLabel.Content = "Brake Force: \n" + currentCar.Brakeforce + " + " + brakePowerChangeTotal + " = " + (currentCar.Brakeforce + brakePowerChangeTotal);
+                        TractionLabel.Content = "Traction: \n" + currentCar.Traction + " + " + tractionChangeTotal + " = " + (currentCar.Traction + tractionChangeTotal); 
+                        WightLabel.Content = "Weight: \n" + currentCar.Weight + " + " + weightChangeTotal + " = " + (currentCar.Weight + weightChangeTotal); 
+                        AccelerationLabel.Content = "Acceleration: \n" + currentCar.Acceleration + " + " + accelerationChangeTotal + " = " + (currentCar.Acceleration + accelerationChangeTotal); 
+                        HighspeedLabel.Content = "Highspeed: \n" + currentCar.Highspeed + " + " + highspeedChangeTotal + " = " + (currentCar.Highspeed + highspeedChangeTotal);
+                        PriceLabel.Content = "Price: \n" + currentCar.Price + " + " + priceChangeTotal + " = " + (currentCar.Price + priceChangeTotal);
                     } else if (currentPanel == "TunedCars") 
                     {
-                        HorsePowerLabel.Content = currentCar.Horsepower + horsePowerChangeTotal;
-                        BrakePowerLabel.Content = currentCar.Brakeforce  + brakePowerChangeTotal;
-                        TractionLabel.Content = currentCar.Traction  + tractionChangeTotal;
-                        WightLabel.Content = currentCar.Weight  + weightChangeTotal;
-                        AccelerationLabel.Content = currentCar.Acceleration  + accelerationChangeTotal;
-                        HighspeedLabel.Content = currentCar.Highspeed  + highspeedChangeTotal;
-                        PriceLabel.Content = currentCar.Price  + priceChangeTotal;
+                        HorsePowerLabel.Content = "HorsePower: \n" + currentCar.Horsepower + horsePowerChangeTotal;
+                        BrakePowerLabel.Content = "Brake Force: \n" + currentCar.Brakeforce  + brakePowerChangeTotal;
+                        TractionLabel.Content = "Traction: \n" + currentCar.Traction  + tractionChangeTotal;
+                        WightLabel.Content = "Weight: \n" + currentCar.Weight  + weightChangeTotal;
+                        AccelerationLabel.Content = "Acceleration: \n" + currentCar.Acceleration  + accelerationChangeTotal;
+                        HighspeedLabel.Content = "Highspeed: \n" + currentCar.Highspeed  + highspeedChangeTotal;
+                        PriceLabel.Content = "Price: \n" + currentCar.Price  + priceChangeTotal;
                     }
 
                     
