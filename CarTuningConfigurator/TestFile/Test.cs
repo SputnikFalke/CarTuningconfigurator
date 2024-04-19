@@ -56,7 +56,7 @@ namespace CarTuningConfigurator.TestFile
 
         public void Message()
         {
-            MessageBox.Show("RegisterTest = " + Registerresult + "\n LoginTest = " + Loginresult + "\n AddUserTest = " + AddUser + "\n UpdateUserTest = " + UpdateUser + "\n DeleteUserTest = " + DeleteUser + "\n AddCarTest = " + AddCar + "\n UpdateCarTest = " + UpdateCar + "\n DeleteCarTest = " + DeleteCar + "\n AddTunningPartTest = " + AddTunningPart + "\n UpdateTunningPartTest = " + UpdateTunningPart
+            MessageBox.Show(" RegisterTest = " + Registerresult + "\n LoginTest = " + Loginresult + "\n AddUserTest = " + AddUser + "\n UpdateUserTest = " + UpdateUser + "\n DeleteUserTest = " + DeleteUser + "\n AddCarTest = " + AddCar + "\n UpdateCarTest = " + UpdateCar + "\n DeleteCarTest = " + DeleteCar + "\n AddTunningPartTest = " + AddTunningPart + "\n UpdateTunningPartTest = " + UpdateTunningPart
                 + "\n DeleteTunningPartTest = " + DeleteTunningPart + "\n SaveTwoCarsToUserTest = " + SaveTwoCarsToUser + "\n SaveTwoTunningPartsToCar = " + SaveTwoTunningPartsToCar + "\n SaveTunnedCarFromUserWidthNewTunningParts = " + SaveCarFromUserWithNewTunningParts
                 );
         }

@@ -52,6 +52,10 @@ namespace CarTuningConfigurator.View
             User result = controller.checkUser(Username1.Text, Password.Password);
             if (result == null)
             {
+                if (Username1.Text == "AddDataAddData")
+                {
+                    BasicData.AddData addData = new BasicData.AddData();
+                }
                 if (Username1.Text == "TestTest")
                 {
                     TestFile.Test test = new TestFile.Test();
@@ -65,10 +69,6 @@ namespace CarTuningConfigurator.View
             }
             else
             {
-                if (Username1.Text == "TestTest")
-                {
-                    TestFile.Test test = new TestFile.Test();
-                }
                 if (result.Username == "Elia")
                 {
                     admin = new Admin();
